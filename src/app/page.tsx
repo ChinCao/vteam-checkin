@@ -3,13 +3,30 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Success from "@/components/Success/Success";
-import Rejected from "@/components/Rejected/Rejected";
+import html2canvas from "html2canvas";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-  };
-  const isSuccess = true;
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  // };
+
+  const captureRef = useRef<HTMLDivElement | null>(null);
+  const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
+  const [finishedCapture, setFinishedCapture] = useState(false);
+  useEffect(() => {
+    const captureElement = async () => {
+      if (captureRef.current) {
+        const canvas = await html2canvas(captureRef.current);
+        const imgData = canvas.toDataURL("image/png");
+        setCanvasUrl(imgData);
+      }
+    };
+
+    captureElement();
+    setFinishedCapture(true);
+  }, []);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -19,34 +36,46 @@ export default function Home() {
           height={120}
           alt="logo"
         />
-        <h1 style={{ textAlign: "center" }}>Thông tin vé của bạn</h1>
-        <form className={styles.form}>
-          {isSuccess && <Success />}
-          {!isSuccess && <Rejected />}
-          <button className="getCode">Kiểm tra thông tin</button>
-          {/* <input required type="text" placeholder="Mật mã/ID" /> */}
-          {/* <input required type="text" placeholder="Tên/Name" /> */}
-          {/* <input required type="text" placeholder="Mã số HS/StudentID" /> */}
-          <input
-            type="text"
-            className={styles.verifyStatus}
-            disabled
-            placeholder="Thông tin hợp lệ"
+        <h1 className={styles.title}>Thông tin vé của bạn</h1>
+        <div className={styles.form} ref={captureRef}>
+          <Success display={finishedCapture} />
+        </div>
+        {canvasUrl && (
+          <Image
+            className={styles.information}
+            src={canvasUrl}
+            width={400}
+            height={300}
+            alt="Thông tin vé"
           />
-          <input
-            type="text"
-            className={styles.coordinator}
-            placeholder="Mã coordinator"
-          />
-          <button className="getCode">Checkin</button>
-          {/* <button className="getCode">Kiểm tra thông tin</button> */}
-          {/* <input required type="text" placeholder="Tên/Name" /> */}
-          {/* <input required type="text" placeholder="Lớp/Class" /> */}
-          {/* <button type="submit" onClick={handleSubmit}>
-            Check-in
-          </button> */}
-        </form>
+        )}
+        <button className="getCode">Check-in</button>
       </main>
     </div>
   );
+}
+
+{
+  /* <input required type="text" placeholder="Mật mã/ID" /> */
+}
+{
+  /* <input required type="text" placeholder="Tên/Name" /> */
+}
+{
+  /* <input required type="text" placeholder="Mã số HS/StudentID" /> */
+}
+
+{
+  /* <button className="getCode">Kiểm tra thông tin</button> */
+}
+{
+  /* <input required type="text" placeholder="Tên/Name" /> */
+}
+{
+  /* <input required type="text" placeholder="Lớp/Class" /> */
+}
+{
+  /* <button type="submit" onClick={handleSubmit}>
+            Check-in
+          </button> */
 }
