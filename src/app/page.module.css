@@ -1,13 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 .page,
 .main {
-  color: #980000;
+  color: green;
   font-family: "Open Sans", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
   justify-content: center;
+}
+
+.page .main p {
+  text-align: center;
+  margin-top: -20px;
+  word-break: break-all;
+  margin-bottom: 15px;
+}
+
+.page .main .encrypt {
+  margin-top: 0px;
+}
+.page .verifyStatus::placeholder {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  color: red;
+  font-weight: 900;
+}
+
+.page .verifyStatus {
+  text-transform: uppercase;
+  border: none;
+  background: yellow;
+}
+
+.page .coordinator::placeholder {
+  color: white;
+  text-align: center;
+}
+
+.page .coordinator {
+  background: orange;
+  border: none;
+  color: white;
 }
 
 .page {
@@ -15,13 +49,16 @@
 }
 
 .main {
-  border: 3px solid #980000;
+  border: 3px solid green;
   border-radius: 5px;
   padding: 20px;
   transform: scale(1.2);
+  width: 500px;
+  height: 100%;
 }
 
 .main form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -32,6 +69,8 @@
 }
 
 .main form input {
+  outline: none;
+  border-color: green;
   padding: 0.5em 1em;
   font-size: 20px;
 }
@@ -42,16 +81,16 @@
   font-size: 20px;
   color: white;
   padding: 0.5em 1em;
-  background: #980000;
+  background: green;
   border: 1px solid transparent;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out,
     background 0.3s ease-in-out;
 }
 
 .main button:hover {
-  border-color: #980000;
+  border-color: green;
   background: transparent;
-  color: #980000;
+  color: green;
 }
 
 .main button:active {
