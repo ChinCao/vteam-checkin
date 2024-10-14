@@ -1,0 +1,68 @@
+.page p {
+  text-align: center;
+  margin-top: -20px;
+  word-break: break-all;
+  margin-bottom: 15px;
+}
+
+.page .title {
+  text-align: center;
+}
+
+.page .information {
+  width: 100%;
+  height: 100%;
+}
+
+.page .encrypt {
+  margin-top: 0px;
+}
+.page .verifyStatus::placeholder {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  color: red;
+  font-weight: 900;
+}
+
+.page .verifyStatus {
+  text-transform: uppercase;
+  border: none;
+  background: yellow;
+}
+
+.page .coordinator::placeholder {
+  color: white;
+  text-align: center;
+}
+
+.page .coordinator {
+  background: orange;
+  border: none;
+  color: white;
+}
+
+.page button {
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  font-size: 20px;
+  color: white;
+  padding: 0.5em 1em;
+  position: relative;
+  z-index: 99;
+  background: green;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    background 0.3s ease-in-out;
+}
+
+.page button:hover {
+  border-color: green;
+  background: transparent;
+  color: green;
+}
+
+.page button:active {
+  transform: scale(0.98);
+}

@@ -16,7 +16,7 @@ const Success = ({ display }: { display: boolean }) => {
             Mã số HS: <span>VS054678</span>
           </h1>
           <h1>
-            Hạng vé: <span> {`Bạch (9-10-11-12)`}</span>
+            Hạng vé: <span> {`Bầu(9-10-11-12)`}</span>
           </h1>
           <h1>
             Concert: <span>Có</span>
