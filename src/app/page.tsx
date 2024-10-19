@@ -8,11 +8,11 @@ import MainLayout from "@/components/MainLayout/MainLayout";
 export default async function Home() {
   const session = await getServerSession(options);
   if (!session) {
-    redirect("/signin?callbackUrl=/");
+    redirect("/signin");
   }
   return (
     <MainLayout color="green" text="Thông tin của bạn">
-      <InfoScreen />
+      <InfoScreen email={session?.user?.email} />
       <h5 className={styles.status}>
         Bạn hãy quay lại website vào lúc 7h:30 để check-in concert!
       </h5>

@@ -5,7 +5,7 @@ import Success from "@/components/Success/Success";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 
-export default function InfoScreen() {
+export default function InfoScreen({ email }: { email: string }) {
   const captureRef = useRef<HTMLDivElement | null>(null);
   const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
   const [finishedCapture, setFinishedCapture] = useState(false);
@@ -25,7 +25,8 @@ export default function InfoScreen() {
   return (
     <div className={styles.page}>
       <div className={styles.form} ref={captureRef}>
-        <Success display={finishedCapture} />
+        {/* <Success display={finishedCapture} /> */}
+        {email}
       </div>
       {canvasUrl && (
         <Image

@@ -6,7 +6,6 @@ import styles from "./signin.module.css";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 
-// eslint-disable-next-line @next/next/no-async-client-component
 const LoginPage = () => {
   const handleGoogleSignIn = () => {
     signIn("google", { callbackUrl: "/" });
