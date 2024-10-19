@@ -4,10 +4,14 @@ import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await getServerSession(options);
   const main_color = session ? "green" : "#980000";
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
   return (
     <div className={styles.page}>
       <main
