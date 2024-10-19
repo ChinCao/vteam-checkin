@@ -1,5 +1,8 @@
 "use client";
+import MainLayout from "@/components/MainLayout/MainLayout";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
+import styles from "./signin.module.css";
 
 const LoginPage = () => {
   const handleGoogleSignIn = () => {
@@ -7,23 +10,18 @@ const LoginPage = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <h1>Login</h1>
+    <MainLayout color="#980000" text="Cổng đăng nhập">
       <button
+        className={styles.google}
         onClick={handleGoogleSignIn}
         style={{ padding: "10px 20px", fontSize: "16px" }}
       >
-        Sign in with Google
+        <Image src="/google.webp" width={50} height={50} alt="logo" />
+        Đăng nhập bằng Google
       </button>
-    </div>
+
+      <h5>Đăng nhập bằng email đã đăng ký form Silencio</h5>
+    </MainLayout>
   );
 };
 

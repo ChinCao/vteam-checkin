@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import MainLayout from "@/components/MainLayout/MainLayout";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -13,30 +14,16 @@ export default async function Home() {
     redirect("/api/auth/signin");
   }
   return (
-    <div className={styles.page}>
-      <main
-        className={styles.main}
-        style={{ color: main_color, borderColor: main_color }}
-      >
-        <Image
-          src="/logo-transparent.png"
-          width={150}
-          height={120}
-          alt="logo"
-        />
-        <h1 className={styles.title}>
-          {session ? "Thông tin vé của bạn" : "Cổng đăng nhập"}
-        </h1>
-        {session ? <InfoScreen /> : <Link href="/api/auth/signin">Login</Link>}
-        {session ? (
-          <h5 className={styles.status}>
-            Bạn hãy quay lại website vào lúc 7h:30 để check-in concert!
-          </h5>
-        ) : (
-          ""
-        )}
-      </main>
-    </div>
+    <MainLayout color="green" text="Thông tin của bạn">
+      {session ? <InfoScreen /> : <Link href="/api/auth/signin">Login</Link>}
+      {session ? (
+        <h5 className={styles.status}>
+          Bạn hãy quay lại website vào lúc 7h:30 để check-in concert!
+        </h5>
+      ) : (
+        ""
+      )}
+    </MainLayout>
   );
 }
 
