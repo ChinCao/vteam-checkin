@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 .page,
 .main {
-  color: green;
   font-family: "Open Sans", sans-serif;
   display: flex;
   flex-direction: column;
@@ -16,7 +15,7 @@
 }
 
 .main {
-  border: 3px solid green;
+  border: 3px solid transparent;
   border-radius: 5px;
   padding: 20px;
   transform: scale(1.2);
@@ -40,6 +39,13 @@
   font-size: 20px;
   font-weight: 500;
   margin-top: -10px;
+}
+
+.page .status {
+  font-size: 17px;
+  text-align: "center";
+  margin-top: "20px";
+  font-weight: 300;
 }
 
 @media (max-width: 450px) {

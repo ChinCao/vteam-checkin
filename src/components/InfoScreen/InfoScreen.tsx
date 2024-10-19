@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
 import styles from "./infoScreen.module.css";
@@ -7,10 +6,6 @@ import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 
 export default function InfoScreen() {
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  // };
-
   const captureRef = useRef<HTMLDivElement | null>(null);
   const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
   const [finishedCapture, setFinishedCapture] = useState(false);

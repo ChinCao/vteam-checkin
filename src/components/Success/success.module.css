@@ -1,6 +1,7 @@
 .container {
   margin-top: 20px;
   color: green;
+  pointer-events: none;
 }
 
 .container h1 span {
