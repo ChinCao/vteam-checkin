@@ -1,25 +1,31 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
 import styles from "./infoScreen.module.css";
 import Success from "@/components/Success/Success";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type StudentInfoArray = [
   string, // '16'
   string, // 'Tía (9-10-11-12, có concert)'
-  string, // 'Hồ Nguyễn Ánh Minh'
-  string, // '10A4'
-  string, // 'VS053960'
-  string, // 'minh053960@stu.vinschool.edu.vn'
-  string, // 'TRUE' (should be converted to boolean)
-  string // 'FALSE' (should be converted to boolean)
+  string, // 'Cao Cự Chính'
+  string, // '11B4'
+  string, // 'VS054678'
+  string, // 'chinh054678@stu.vinschool.edu.vn'
+  string, // 'TRUE'
+  string // 'FALSE'
 ];
 
 export default function InfoScreen({ data }: { data: StudentInfoArray }) {
+  const [password, setPassword] = useState();
+  const [isDisabled, setIsDisabled] = useState(false);
   const captureRef = useRef<HTMLDivElement | null>(null);
   const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
   const [finishedCapture, setFinishedCapture] = useState(false);
+  const router = useRouter();
+
   useEffect(() => {
     const captureElement = async () => {
       if (captureRef.current) {
@@ -32,6 +38,18 @@ export default function InfoScreen({ data }: { data: StudentInfoArray }) {
     captureElement();
     setFinishedCapture(true);
   }, []);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (password == data[2][0] + data[4].slice(-2)) {
+      setIsDisabled(true);
+      localStorage.setItem(
+        "loginStatus",
+        "Đăng nhập bằng email đã đăng ký Silencio"
+      );
+      router.push("/signout");
+    }
+  };
 
   return (
     <div className={styles.page}>
@@ -48,7 +66,24 @@ export default function InfoScreen({ data }: { data: StudentInfoArray }) {
           alt="Thông tin vé"
         />
       )}
-      <button className="getCode">Check-in</button>
+      <form className={styles.password}>
+        <input
+          type="text"
+          placeholder="Đưa cho staff VTEAM"
+          value={password}
+          disabled={isDisabled}
+          onChange={(e: any) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <button
+          className="getCode"
+          disabled={isDisabled}
+          onClick={handleSubmit}
+        >
+          Check-in
+        </button>
+      </form>
     </div>
   );
 }

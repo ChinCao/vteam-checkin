@@ -47,7 +47,6 @@
 }
 
 .page button {
-  margin-top: 20px;
   width: 100%;
   cursor: pointer;
   outline: none;
@@ -70,4 +69,29 @@
 
 .page button:active {
   transform: scale(0.98);
+}
+
+.page .password {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: max-content;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.page .password input {
+  width: 70%;
+  height: 45px;
+  text-align: center;
+}
+
+.page .password input::placeholder {
+  text-align: center;
+}
+
+.page .password button {
+  width: 30%;
 }
