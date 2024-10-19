@@ -5,7 +5,18 @@ import Success from "@/components/Success/Success";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 
-export default function InfoScreen({ email }: { email: string }) {
+type StudentInfoArray = [
+  string, // '16'
+  string, // 'Tía (9-10-11-12, có concert)'
+  string, // 'Hồ Nguyễn Ánh Minh'
+  string, // '10A4'
+  string, // 'VS053960'
+  string, // 'minh053960@stu.vinschool.edu.vn'
+  string, // 'TRUE' (should be converted to boolean)
+  string // 'FALSE' (should be converted to boolean)
+];
+
+export default function InfoScreen({ data }: { data: StudentInfoArray }) {
   const captureRef = useRef<HTMLDivElement | null>(null);
   const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
   const [finishedCapture, setFinishedCapture] = useState(false);
@@ -25,9 +36,9 @@ export default function InfoScreen({ email }: { email: string }) {
   return (
     <div className={styles.page}>
       <div className={styles.form} ref={captureRef}>
-        {/* <Success display={finishedCapture} /> */}
-        {email}
+        <Success display={finishedCapture} data={data} />
       </div>
+
       {canvasUrl && (
         <Image
           className={styles.information}

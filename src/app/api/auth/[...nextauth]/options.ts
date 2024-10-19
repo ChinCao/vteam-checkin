@@ -22,11 +22,14 @@ export const options = {
       return token;
     },
     async session({ session, token }: any) {
-      if (session?.user) session.user.role = token.role!;
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+      session.user.image = token.image;
       return session;
     },
   },
   pages: {
     signIn: "/signin",
+    signOut: "/signout",
   },
 };

@@ -10,13 +10,26 @@ const LoginPage = () => {
   const handleGoogleSignIn = () => {
     signIn("google", { callbackUrl: "/" });
   };
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   useEffect(() => {
+    const existingValue = localStorage.getItem("loginStatus");
+    if (!existingValue) {
+      localStorage.setItem(
+        "loginStatus",
+        "Đăng nhập bằng email đã đăng ký Silencio"
+      );
+    }
+
     if (status === "authenticated") {
+      localStorage.setItem(
+        "loginStatus",
+        "Đăng nhập bằng email đã đăng ký Silencio"
+      );
       redirect("/");
     }
-  }, [status]);
+  }, [session?.user?.email, status]);
   return (
     <MainLayout color="#980000" text="Cổng đăng nhập">
       <button
@@ -27,7 +40,7 @@ const LoginPage = () => {
         <Image src="/google.webp" width={50} height={50} alt="logo" />
         Đăng nhập bằng Google
       </button>
-      <h5>Đăng nhập bằng email đã đăng ký form Silencio</h5>
+      <h4>{localStorage.getItem("loginStatus")}</h4>
     </MainLayout>
   );
 };

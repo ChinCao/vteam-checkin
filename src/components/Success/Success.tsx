@@ -1,25 +1,42 @@
 import styles from "./success.module.css";
 
-const Success = ({ display }: { display: boolean }) => {
+type StudentInfoArray = [
+  string, // '16'
+  string, // 'Tía (9-10-11-12, có concert)'
+  string, // 'Hồ Nguyễn Ánh Minh'
+  string, // '10A4'
+  string, // 'VS053960'
+  string, // 'minh053960@stu.vinschool.edu.vn'
+  string, // 'TRUE' (should be converted to boolean)
+  string // 'FALSE' (should be converted to boolean)
+];
+
+const Success = ({
+  display,
+  data,
+}: {
+  display: boolean;
+  data: StudentInfoArray;
+}) => {
   return (
     <>
       {!display && (
         <div className={styles.container}>
           <p>Đưa màn hình này cho staff VTEAM để check-in nhé</p>
           <h1>
-            Tên: <span>Cao Cự Chính</span>
+            Tên: <span>{data[2]}</span>
           </h1>
           <h1>
-            Lớp: <span>11B4</span>
+            Lớp: <span>{data[3]}</span>
           </h1>
           <h1>
-            Mã số HS: <span>VS054678</span>
+            Mã số HS: <span>{data[4]}</span>
           </h1>
           <h1>
-            Hạng vé: <span> {`Bầu(9-10-11-12)`}</span>
+            Hạng vé: <span>{data[1]}</span>
           </h1>
           <h1>
-            Concert: <span>Có</span>
+            Concert: <span>{data[1].includes("concert") ? "Có" : "Không"}</span>
           </h1>
         </div>
       )}
