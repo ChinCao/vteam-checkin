@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/signin/auth.js",
-    "src/lib/GoogleSpreadsheet/index.js"
+    "src/lib/GoogleSpreadsheet/index.js",
+    "src/app/api/SpreadSheet/route.js"
   ],
   "exclude": ["node_modules"]
 }

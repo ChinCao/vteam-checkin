@@ -5,7 +5,7 @@ import styles from "./infoScreen.module.css";
 import Success from "@/components/Success/Success";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import SubmitButton from "./SubmitButton";
 
 type StudentInfoArray = [
   string, // '16'
@@ -19,12 +19,10 @@ type StudentInfoArray = [
 ];
 
 export default function InfoScreen({ data }: { data: StudentInfoArray }) {
-  const [password, setPassword] = useState();
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [password, setPassword] = useState<string>("");
   const captureRef = useRef<HTMLDivElement | null>(null);
   const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
   const [finishedCapture, setFinishedCapture] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const captureElement = async () => {
@@ -38,18 +36,6 @@ export default function InfoScreen({ data }: { data: StudentInfoArray }) {
     captureElement();
     setFinishedCapture(true);
   }, []);
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if (password == data[2][0] + data[4].slice(-2)) {
-      setIsDisabled(true);
-      localStorage.setItem(
-        "loginStatus",
-        "Đăng nhập bằng email đã đăng ký Silencio"
-      );
-      router.push("/signout");
-    }
-  };
 
   return (
     <div className={styles.page}>
@@ -71,18 +57,11 @@ export default function InfoScreen({ data }: { data: StudentInfoArray }) {
           type="text"
           placeholder="Đưa cho staff VTEAM"
           value={password}
-          disabled={isDisabled}
           onChange={(e: any) => {
             setPassword(e.target.value);
           }}
         />
-        <button
-          className="getCode"
-          disabled={isDisabled}
-          onClick={handleSubmit}
-        >
-          Check-in
-        </button>
+        <SubmitButton data={data} password={password} />
       </form>
     </div>
   );
