@@ -7,7 +7,7 @@ const Valid = () => {
   useEffect(() => {
     localStorage.setItem(
       "loginStatus",
-      "Hãy quay lại check-in concert bằng website này vào lúc 07:30!"
+      "Hãy quay lại check-in concert bằng website này vào lúc 07:30 nếu bạn có vé concert!"
     );
     redirect("/signout");
   });

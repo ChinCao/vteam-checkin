@@ -9,10 +9,6 @@ const SubmitButton = ({ data, password }: { data: any; password: string }) => {
     e.preventDefault();
     const correct = await Checkin(data, password);
     if (correct) {
-      localStorage.setItem(
-        "loginStatus",
-        "Đăng nhập bằng email đã đăng ký Silencio"
-      );
       router.push("/signout/checkin-successful");
     }
   };
