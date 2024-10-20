@@ -3,11 +3,11 @@ import { google } from "googleapis";
 const auth = new google.auth.GoogleAuth({
   credentials: {
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_SERVICE_ACOUNT_PRIVATE_KEY,
+    private_key: atob(process.env.GOOGLE_SERVICE_ACOUNT_PRIVATE_KEY),
   },
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
-
+console.log(process.env.GOOGLE_SERVICE_ACOUNT_PRIVATE_KEY);
 export const getSheetData = async (authenticated_email) => {
   const sheets = google.sheets({ version: "v4", auth: await auth.getClient() });
   const range = `'SHEET CHECK IN'!A:Z`;
