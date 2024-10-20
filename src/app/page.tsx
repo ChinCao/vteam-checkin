@@ -5,8 +5,7 @@ import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
 import MainLayout from "@/components/MainLayout/MainLayout";
-import { getSheetData } from "@/lib/GoogleSpreadsheet";
-import SubmitButton from "@/components/InfoScreen/SubmitButton";
+import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -15,15 +14,17 @@ export default async function Home() {
     redirect("/signin");
   }
   const sheetData: any = await getSheetData(session?.user?.email);
-  // const response: any = await fetch("http://localhost:3000/api/SpreadSheet", {
-  //   cache: "no-store",
-  // });
+
   if (!sheetData) {
     redirect("/signout/do-not-exist");
   }
   if (sheetData[6] == "TRUE") {
+    redirect("/signout/already-logged-in");
+  }
+  if (sheetData[7] == "TRUE") {
     redirect("/signout/already-checked-in");
   }
+  await updateSheetData(sheetData, "login");
 
   return (
     <MainLayout color="green" text="Thông tin của bạn">

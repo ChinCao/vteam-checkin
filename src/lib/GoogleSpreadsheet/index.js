@@ -30,9 +30,18 @@ export const getSheetData = async (authenticated_email) => {
   }
 };
 
-export const updateSheetData = async (data) => {
+export const updateSheetData = async (data, eventType) => {
+  let cell = null;
+  if (eventType == "login") {
+    cell = "G";
+  } else if (eventType == "normal") {
+    cell = "H";
+  } else if (eventType == "concert") {
+    cell = "L";
+  }
   const sheets = google.sheets({ version: "v4", auth: await auth.getClient() });
-  const range = `'SHEET CHECK IN'!H${parseInt(data[0]) + 2}`;
+  const range = `'SHEET CHECK IN'!${cell}${parseInt(data[0]) + 2}`;
+  console.log(range, "aaaaa");
 
   try {
     await sheets.spreadsheets.values.update({
