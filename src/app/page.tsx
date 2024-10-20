@@ -22,7 +22,9 @@ export default async function Home() {
   if (sheetData[7] == "TRUE") {
     redirect("/signout/already-checked-in");
   }
-  const csrf = cookies().get("next-auth.csrf-token")?.value.split("|")[0];
+  const csrf = cookies()
+    .get("__Host-next-auth.csrf-token")
+    ?.value.split("|")[0];
 
   if (sheetData[6] == "TRUE" && sheetData[9] != csrf) {
     redirect("/signout/already-logged-in");
