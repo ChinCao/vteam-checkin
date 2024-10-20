@@ -40,7 +40,11 @@ const LoginPage = () => {
         <Image src="/google.webp" width={50} height={50} alt="logo" />
         Đăng nhập bằng Google
       </button>
-      <h4>{localStorage.getItem("loginStatus")}</h4>
+      <h4 className={styles.status} suppressHydrationWarning>
+        {typeof window !== "undefined"
+          ? localStorage.getItem("loginStatus")
+          : ""}
+      </h4>
     </MainLayout>
   );
 };

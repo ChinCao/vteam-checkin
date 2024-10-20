@@ -15,6 +15,7 @@ export default function MainLayout({ color, text, children }: MainLayoutProps) {
         style={{ color: color, borderColor: color }}
       >
         <Image
+          priority
           src="/logo-transparent.png"
           width={150}
           height={120}
