@@ -7,7 +7,6 @@ const auth = new google.auth.GoogleAuth({
   },
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
-console.log(process.env.GOOGLE_SERVICE_ACOUNT_PRIVATE_KEY);
 export const getSheetData = async (authenticated_email) => {
   const sheets = google.sheets({ version: "v4", auth: await auth.getClient() });
   const range = `'SHEET CHECK IN'!A:Z`;
@@ -30,7 +29,7 @@ export const getSheetData = async (authenticated_email) => {
   }
 };
 
-export const updateSheetData = async (data, eventType) => {
+export const updateSheetData = async (data, eventType, csrfToken = "") => {
   let cell = null;
   if (eventType == "login") {
     cell = "G";
@@ -41,7 +40,6 @@ export const updateSheetData = async (data, eventType) => {
   }
   const sheets = google.sheets({ version: "v4", auth: await auth.getClient() });
   const range = `'SHEET CHECK IN'!${cell}${parseInt(data[0]) + 2}`;
-  console.log(range, "aaaaa");
 
   try {
     await sheets.spreadsheets.values.update({
@@ -52,6 +50,22 @@ export const updateSheetData = async (data, eventType) => {
         values: [[true]],
       },
     });
+
+    if (data[6] == "FALSE" && csrfToken) {
+      const token_range = `'SHEET CHECK IN'!J${parseInt(data[0]) + 2}`;
+      try {
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: process.env.GOOGLE_SHEET_ID,
+          range: token_range,
+          valueInputOption: "RAW",
+          requestBody: {
+            values: [[csrfToken]],
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   } catch (error) {
     console.log(error);
   }

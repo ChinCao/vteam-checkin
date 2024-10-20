@@ -23,8 +23,6 @@ export const options = {
     },
     async session({ session, token }: any) {
       session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      session.user.image = token.image;
       return session;
     },
   },
