@@ -18,12 +18,13 @@ export default async function Home() {
   if (!sheetData) {
     redirect("/signout/do-not-exist");
   }
-  if (sheetData[6] == "TRUE") {
-    redirect("/signout/already-logged-in");
-  }
   if (sheetData[7] == "TRUE") {
     redirect("/signout/already-checked-in");
   }
+  if (sheetData[6] == "TRUE") {
+    redirect("/signout/already-logged-in");
+  }
+
   await updateSheetData(sheetData, "login");
 
   return (
