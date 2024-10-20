@@ -32,7 +32,7 @@ export default async function Home() {
       <InfoScreen data={sheetData} />
       <h5 className={styles.status}>
         {sheetData[1].includes("concert")
-          ? " Bạn hãy quay lại website vào lúc 7h:30 để check-in concert!"
+          ? " Bạn hãy quay lại website vào lúc 7h:30 để check-in concert nếu vé có concert!"
           : ""}
       </h5>
     </MainLayout>
