@@ -32,6 +32,7 @@
   overflow: hidden;
   width: max-content;
   max-height: 720px;
+  max-width: 1100px;
   display: flex;
   align-items: stretch;
   border-radius: 5px;
@@ -57,6 +58,7 @@
 
 .poster {
   border-right: 2px solid transparent;
+  object-fit: cover;
   width: 100%;
 }
 
@@ -125,7 +127,7 @@
 
   .decoration_login {
     width: 779px;
-    height: 743px;
+    height: 763px;
     object-fit: contain;
     left: -47%;
     top: 0%;
@@ -143,6 +145,7 @@
 
   .decoration_login {
     left: -85%;
-    top: -1%;
+    top: -5%;
+    height: 833px;
   }
 }
