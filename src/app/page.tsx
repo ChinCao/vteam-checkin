@@ -38,7 +38,7 @@ export default async function Home() {
       <h1>{session?.user?.token}</h1>
       <h5 className={styles.status}>
         {sheetData[1].includes("concert")
-          ? " Bạn hãy quay lại website vào lúc 7h:30 để check-in concert!"
+          ? " Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!"
           : ""}
       </h5>
     </MainLayout>
