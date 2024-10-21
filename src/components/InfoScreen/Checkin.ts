@@ -15,7 +15,7 @@ export async function Checkin(
   password: string
 ) {
   {
-    if (password == data[2][0] + data[4].slice(-2)) {
+    if (password == data[4].slice(-3)) {
       await updateSheetData(data, "normal");
       return true;
     }
