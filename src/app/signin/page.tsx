@@ -41,7 +41,13 @@ const LoginPage = () => {
         onClick={handleGoogleSignIn}
         style={{ padding: "10px 20px", fontSize: "16px" }}
       >
-        <Image src="/google.webp" width={50} height={50} alt="logo" />
+        <Image
+          className={styles.logo}
+          src="/google.webp"
+          width={50}
+          height={50}
+          alt="logo"
+        />
         Đăng nhập bằng Google
       </button>
       <h4 className={styles.status}>{loginStatus}</h4>

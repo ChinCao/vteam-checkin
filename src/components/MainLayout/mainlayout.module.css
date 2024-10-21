@@ -6,21 +6,74 @@
   flex-direction: column;
   align-items: center;
   text-align: left;
-  justify-content: center;
+  justify-content: flex-start;
   appearance: none;
+}
+
+.title {
+  text-align: center;
 }
 
 .page {
   min-height: 100vh;
+  background: black;
+  justify-content: center;
+}
+
+.logo_vteam {
+  filter: invert(1);
+}
+
+.logo {
+  margin-bottom: 5%;
+}
+
+.wrapper {
+  overflow: hidden;
+  width: max-content;
+  max-height: 720px;
+  display: flex;
+  align-items: stretch;
+  border-radius: 5px;
+  margin: 1em 0;
+  border: 2px solid transparent;
+  background-size: contain;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.header,
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster_container {
+  width: 55%;
+  overflow: hidden;
+}
+
+.poster {
+  border-right: 2px solid transparent;
+  object-fit: cover;
+  width: 100%;
+}
+
+.silencio {
+  width: 100%;
+  object-fit: contain;
 }
 
 .main {
-  border: 3px solid transparent;
   border-radius: 5px;
+  position: relative;
+  display: flex;
+  justify-content: center;
   padding: 20px;
-  transform: scale(1.2);
-  width: 500px;
-  height: 100%;
+  overflow: hidden;
+  flex: 1;
 }
 
 .main .image {
@@ -28,13 +81,68 @@
   width: 90%;
 }
 
-@media (max-width: 450px) {
-  .main {
+.decoration {
+  position: absolute;
+}
+
+.decoration_login {
+  left: -30%;
+  top: 0%;
+}
+
+.decoration_logout {
+  top: 0%;
+  left: -1%;
+}
+
+@media (max-width: 1200px) {
+  .wrapper {
     width: 90%;
-    transform: scale(1);
+  }
+}
+
+@media (max-width: 1080px) {
+  .wrapper {
+    width: 500px;
+    min-height: 650px;
   }
 
-  .main form {
-    width: 100%;
+  .decoration_logout {
+    top: -8%;
+    left: -1%;
+  }
+
+  .poster_container {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .wrapper {
+    width: 90%;
+    max-height: max-content;
+  }
+
+  .decoration_login {
+    width: 779px;
+    height: 741px;
+    object-fit: contain;
+    left: -47%;
+    top: -1%;
+  }
+}
+
+@media (max-width: 450px) {
+  .title {
+    font-size: 25px;
+  }
+
+  .silencio {
+    width: 80%;
+  }
+
+  .decoration_login {
+    left: -85%;
+    top: -1%;
   }
 }

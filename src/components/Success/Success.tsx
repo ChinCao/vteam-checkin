@@ -22,7 +22,9 @@ const Success = ({
     <>
       {!display && (
         <div className={styles.container}>
-          <p>Đưa màn hình này cho staff VTEAM để check-in nhé</p>
+          <p className={styles.noti}>
+            Đưa màn hình này cho staff VTEAM để check-in
+          </p>
           <h1>
             Tên: <span>{data[2]}</span>
           </h1>

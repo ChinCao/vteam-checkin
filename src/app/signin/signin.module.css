@@ -5,10 +5,29 @@
   flex-direction: row;
   cursor: pointer;
   margin: 20px 0;
-  background: white;
+  margin-bottom: 10%;
+  background: #980000;
+  color: white;
+  border: 1px solid white;
   border-radius: 3px;
+}
+
+.logo {
+  filter: sepia(1) saturate(5) hue-rotate(-50deg);
+  margin-right: 5px;
 }
 
 .status {
   text-align: center;
+  width: 62%;
+}
+
+@media (max-width: 640px) {
+  .google {
+    margin-bottom: 5%;
+  }
+
+  .status {
+    padding-bottom: 15px;
+  }
 }
