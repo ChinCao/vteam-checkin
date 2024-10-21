@@ -1,23 +1,12 @@
-import { isConcert } from "@/constants/constants";
+import { isConcert, SpreadsheetData } from "@/constants/constants";
 import styles from "./success.module.css";
-
-type StudentInfoArray = [
-  string, // '16'
-  string, // 'Tía (9-10-11-12, có concert)'
-  string, // 'Hồ Nguyễn Ánh Minh'
-  string, // '10A4'
-  string, // 'VS053960'
-  string, // 'minh053960@stu.vinschool.edu.vn'
-  string, // 'TRUE' (should be converted to boolean)
-  string // 'FALSE' (should be converted to boolean)
-];
 
 const Success = ({
   display,
   data,
 }: {
   display: boolean;
-  data: StudentInfoArray;
+  data: SpreadsheetData;
 }) => {
   return (
     <>

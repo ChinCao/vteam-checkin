@@ -6,19 +6,9 @@ import Success from "@/components/Success/Success";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 import SubmitButton from "./SubmitButton";
+import { SpreadsheetData } from "@/constants/constants";
 
-type StudentInfoArray = [
-  string, // '16'
-  string, // 'Tía (9-10-11-12, có concert)'
-  string, // 'Cao Cự Chính'
-  string, // '11B4'
-  string, // 'VS054678'
-  string, // 'chinh054678@stu.vinschool.edu.vn'
-  string, // 'TRUE'
-  string // 'FALSE'
-];
-
-export default function InfoScreen({ data }: { data: StudentInfoArray }) {
+export default function InfoScreen({ data }: { data: SpreadsheetData }) {
   const [password, setPassword] = useState<string>("");
   const captureRef = useRef<HTMLDivElement | null>(null);
   const [canvasUrl, setCanvasUrl] = useState<string | null>(null);
