@@ -1,3 +1,4 @@
+import { isConcert } from "@/constants/constants";
 import styles from "./success.module.css";
 
 type StudentInfoArray = [
@@ -23,7 +24,8 @@ const Success = ({
       {!display && (
         <div className={styles.container}>
           <p className={styles.noti}>
-            Đưa màn hình này cho staff VTEAM để check-in
+            Đưa màn hình này cho staff VTEAM để check-in{" "}
+            {isConcert() ? "Silencio" : "concert"}
           </p>
           <h1>
             Tên: <span>{data[2]}</span>

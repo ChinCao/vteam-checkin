@@ -21,9 +21,12 @@ export default async function Home() {
   if (!sheetData) {
     redirect("/signout/do-not-exist");
   }
-  const csrf = cookies()
-    .get("__Host-next-auth.csrf-token")
-    ?.value.split("|")[0];
+  // const csrf = cookies()
+  //   .get("__Host-next-auth.csrf-token")
+  //   ?.value.split("|")[0];
+
+  const csrf = cookies().get("next-auth.csrf-token")?.value.split("|")[0];
+
   if (!isConcert()) {
     if (sheetData[7] == "TRUE") {
       redirect("/signout/already-checked-in");
