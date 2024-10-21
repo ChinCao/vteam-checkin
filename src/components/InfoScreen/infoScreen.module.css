@@ -115,6 +115,16 @@
   width: max-content;
 }
 
+.no_spinner {
+  -moz-appearance: textfield;
+}
+
+.no_spinner::-webkit-inner-spin-button,
+.no_spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media (max-width: 540px) {
   .page .password {
     flex-direction: column;

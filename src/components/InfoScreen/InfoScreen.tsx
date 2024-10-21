@@ -54,7 +54,8 @@ export default function InfoScreen({ data }: { data: StudentInfoArray }) {
       )}
       <form className={styles.password}>
         <input
-          type="text"
+          type="number"
+          className={styles.no_spinner}
           placeholder="Đưa cho staff VTEAM"
           value={password}
           onChange={(e: any) => {
