@@ -89,6 +89,8 @@
   margin-top: 10px;
   display: flex;
   flex-direction: row;
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: max-content;
   align-items: center;
@@ -97,7 +99,7 @@
 }
 
 .page .password input {
-  width: 70%;
+  width: 51%;
   height: 45px;
   border: 1px solid green;
   background: transparent;

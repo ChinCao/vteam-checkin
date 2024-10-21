@@ -83,10 +83,11 @@
 
 .decoration {
   position: absolute;
+  z-index: 1;
 }
 
 .decoration_login {
-  left: -30%;
+  left: -28%;
   top: 0%;
 }
 
@@ -125,10 +126,10 @@
 
   .decoration_login {
     width: 779px;
-    height: 741px;
+    height: 743px;
     object-fit: contain;
     left: -47%;
-    top: -1%;
+    top: 0%;
   }
 }
 
