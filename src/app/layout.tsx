@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AuthProvider from "@/components/AuthContext";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Silencio - Checkin",
@@ -19,6 +20,15 @@ export default function RootLayout({
       </head>
       <AuthProvider>
         <body>{children}</body>
+        <a
+          className="vectr-sponsor"
+          href="https://www.facebook.com/vectr.vcp"
+          target="_blank"
+          rel="noopener"
+        >
+          Trang web này được phát triển và tài trợ bởi CLB VECTR
+          <Image width={25} height={25} src="/vectr.webp" alt="Vectr logo" />
+        </a>
       </AuthProvider>
     </html>
   );
