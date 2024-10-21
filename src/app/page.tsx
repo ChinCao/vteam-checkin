@@ -8,6 +8,7 @@ import MainLayout from "@/components/MainLayout/MainLayout";
 import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
 import { cookies } from "next/headers";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
+import { isConcert } from "@/constants/constants";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -20,18 +21,29 @@ export default async function Home() {
   if (!sheetData) {
     redirect("/signout/do-not-exist");
   }
-  if (sheetData[7] == "TRUE") {
-    redirect("/signout/already-checked-in");
-  }
   const csrf = cookies()
     .get("__Host-next-auth.csrf-token")
     ?.value.split("|")[0];
-
-  if (sheetData[6] == "TRUE" && sheetData[9] != csrf) {
-    redirect("/signout/already-logged-in");
+  if (!isConcert()) {
+    if (sheetData[7] == "TRUE") {
+      redirect("/signout/already-checked-in");
+    }
+    if (sheetData[6] == "TRUE" && sheetData[10] != csrf) {
+      redirect("/signout/already-logged-in");
+    }
+    await updateSheetData(sheetData, "login", csrf);
+  } else {
+    if (!sheetData[1].includes("concert")) {
+      redirect("/signout/no-concert-ticket");
+    }
+    if (sheetData[9] == "TRUE") {
+      redirect("/signout/already-checked-in");
+    }
+    if (sheetData[8] == "TRUE" && sheetData[11] != csrf) {
+      redirect("/signout/already-logged-in");
+    }
+    await updateSheetData(sheetData, "login-concert", csrf);
   }
-
-  await updateSheetData(sheetData, "login", csrf);
 
   return (
     <MainLayout color="green" text="Thông tin của bạn">

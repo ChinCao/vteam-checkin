@@ -1,4 +1,5 @@
 "use server";
+import { isConcert } from "@/constants/constants";
 import { updateSheetData } from "@/lib/GoogleSpreadsheet";
 
 export async function Checkin(
@@ -15,8 +16,11 @@ export async function Checkin(
   password: string
 ) {
   {
-    if (password == data[4].slice(-3)) {
-      await updateSheetData(data, "normal");
+    if (password == data[4].slice(-3) && !isConcert()) {
+      await updateSheetData(data, "check-in");
+      return true;
+    } else if (password == data[4].slice(-3) && isConcert()) {
+      await updateSheetData(data, "check-in-concert");
       return true;
     }
     return false;

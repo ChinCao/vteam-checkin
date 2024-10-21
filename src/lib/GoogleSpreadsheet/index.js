@@ -33,10 +33,12 @@ export const updateSheetData = async (data, eventType, csrfToken = "") => {
   let cell = null;
   if (eventType == "login") {
     cell = "G";
-  } else if (eventType == "normal") {
+  } else if (eventType == "check-in") {
     cell = "H";
-  } else if (eventType == "concert") {
-    cell = "L";
+  } else if (eventType == "login-concert") {
+    cell = "I";
+  } else if (eventType == "check-in-concert") {
+    cell = "J";
   }
   const sheets = google.sheets({ version: "v4", auth: await auth.getClient() });
   const range = `'SHEET CHECK IN'!${cell}${parseInt(data[0]) + 2}`;
@@ -50,21 +52,27 @@ export const updateSheetData = async (data, eventType, csrfToken = "") => {
         values: [[true]],
       },
     });
-
-    if (data[6] == "FALSE" && csrfToken) {
-      const token_range = `'SHEET CHECK IN'!J${parseInt(data[0]) + 2}`;
-      try {
-        await sheets.spreadsheets.values.update({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: token_range,
-          valueInputOption: "RAW",
-          requestBody: {
-            values: [[csrfToken]],
-          },
-        });
-      } catch (error) {
-        console.log(error);
-      }
+    let token_range = null;
+    if (eventType == "login" && csrfToken && data[6] == "FALSE") {
+      token_range = `'SHEET CHECK IN'!K${parseInt(data[0]) + 2}`;
+    } else if (
+      eventType == "login-concert" &&
+      csrfToken &&
+      data[8] == "FALSE"
+    ) {
+      token_range = `'SHEET CHECK IN'!L${parseInt(data[0]) + 2}`;
+    }
+    try {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: token_range,
+        valueInputOption: "RAW",
+        requestBody: {
+          values: [[csrfToken]],
+        },
+      });
+    } catch (error) {
+      console.log(error);
     }
   } catch (error) {
     console.log(error);
