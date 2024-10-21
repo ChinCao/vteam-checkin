@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import MainLayout from "@/components/MainLayout/MainLayout";
 import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
 import { cookies } from "next/headers";
+import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -35,11 +36,15 @@ export default async function Home() {
   return (
     <MainLayout color="green" text="Thông tin của bạn">
       <InfoScreen data={sheetData} />
-      <h1>{session?.user?.token}</h1>
       <h5 className={styles.status}>
-        {sheetData[1].includes("concert")
-          ? " Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!"
-          : ""}
+        {sheetData[1].includes("concert") ? (
+          <>
+            <CountdownTimer />
+            Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!
+          </>
+        ) : (
+          ""
+        )}
       </h5>
     </MainLayout>
   );

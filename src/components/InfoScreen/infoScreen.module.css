@@ -117,6 +117,7 @@
 
 .no_spinner {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .no_spinner::-webkit-inner-spin-button,

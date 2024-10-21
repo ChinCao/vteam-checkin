@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./signin.module.css";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
+import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
 
 const LoginPage = () => {
   const handleGoogleSignIn = () => {
@@ -50,6 +51,7 @@ const LoginPage = () => {
         />
         Đăng nhập bằng Google
       </button>
+      <CountdownTimer />
       <h4 className={styles.status}>{loginStatus}</h4>
     </MainLayout>
   );

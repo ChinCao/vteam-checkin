@@ -127,8 +127,8 @@
 
   .decoration_login {
     width: 779px;
-    height: 763px;
-    object-fit: contain;
+    height: 808px;
+    object-fit: fill;
     left: -47%;
     top: 0%;
   }
@@ -144,8 +144,8 @@
   }
 
   .decoration_login {
-    left: -85%;
+    left: -80%;
     top: -5%;
-    height: 833px;
+    height: 871px;
   }
 }
