@@ -12,7 +12,8 @@
 }
 
 .page img {
-  max-width: 350px;
+  max-width: 330px;
+  border: 2px dashed green;
 }
 
 .page p {
