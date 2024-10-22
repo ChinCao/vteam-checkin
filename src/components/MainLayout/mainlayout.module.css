@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 .page,
 .main {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-PatrickHandSC);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +11,11 @@
 
 .title {
   text-align: center;
+  font-family: var(--font-RoadRage);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: -10px;
+  font-size: 45px;
 }
 
 .page {
@@ -136,10 +140,6 @@
 }
 
 @media (max-width: 450px) {
-  .title {
-    font-size: 25px;
-  }
-
   .silencio {
     width: 80%;
   }

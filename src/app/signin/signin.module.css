@@ -5,13 +5,20 @@
   flex-direction: row;
   position: relative;
   cursor: pointer;
-  margin: 20px 0;
+  margin: 15px 0;
+  font-family: var(--font-PatrickHandSC);
+  margin-top: 20px;
   margin-bottom: 10%;
   background: #980000;
   z-index: 2;
   color: white;
   border: 1px solid white;
   border-radius: 3px;
+}
+
+.google h1 {
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .logo {
@@ -22,6 +29,7 @@
 .status {
   text-align: center;
   width: 62%;
+  font-size: 18px;
   z-index: 2;
   position: relative;
 }

@@ -17,19 +17,19 @@ const Success = ({
             {isConcert() ? "concert" : "Silencio"}
           </p>
           <h1>
-            Tên: <span>{data[2]}</span>
+            Tên: <span>{data[2].toUpperCase()}</span>
           </h1>
           <h1>
-            Lớp: <span>{data[3]}</span>
+            Lớp: <span>{data[3].toUpperCase()}</span>
           </h1>
           <h1>
-            Mã số HS: <span>{data[4]}</span>
+            Mã số HS: <span>{data[4].toUpperCase()}</span>
           </h1>
           <h1>
-            Hạng vé: <span>{data[1]}</span>
+            Hạng vé: <span>{data[1].toUpperCase()}</span>
           </h1>
           <h1>
-            Concert: <span>{data[1].includes("concert") ? "Có" : "Không"}</span>
+            Concert: <span>{data[1].includes("concert") ? "CÓ" : "KHÔNG"}</span>
           </h1>
         </div>
       )}

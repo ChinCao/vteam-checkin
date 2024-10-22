@@ -49,7 +49,7 @@ export default async function Home() {
   }
 
   return (
-    <MainLayout color="green" text="Thông tin của bạn">
+    <MainLayout color="green" text="thông tin vé">
       <InfoScreen data={sheetData} />
       <h5 className={styles.status}>
         {sheetData[1].includes("concert") ? (

@@ -36,7 +36,7 @@ const LoginPage = () => {
   }, [session?.user?.email, status]);
 
   return (
-    <MainLayout color="#980000" text="Cổng đăng nhập">
+    <MainLayout color="#980000" text="cổng đăng nhập">
       <button
         className={styles.google}
         onClick={handleGoogleSignIn}
@@ -49,7 +49,7 @@ const LoginPage = () => {
           height={50}
           alt="logo"
         />
-        Đăng nhập bằng Google
+        <h1>đăng nhập bằng google</h1>
       </button>
       <CountdownTimer />
       <h4 className={styles.status}>{loginStatus}</h4>
