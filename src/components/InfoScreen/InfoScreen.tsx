@@ -46,7 +46,7 @@ export default function InfoScreen({ data }: { data: SpreadsheetData }) {
         <input
           type="number"
           className={styles.no_spinner}
-          placeholder="Đưa cho staff vteam"
+          placeholder="Đưa cho staff VTEAM"
           value={password}
           onChange={(e: any) => {
             setPassword(e.target.value);
