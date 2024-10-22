@@ -15,7 +15,7 @@ const SubmitButton = ({ data, password }: { data: any; password: string }) => {
 
   return (
     <button type="submit" onClick={handleSubmit}>
-      check-in
+      Check-in
     </button>
   );
 };

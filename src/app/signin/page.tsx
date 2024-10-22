@@ -49,7 +49,7 @@ const LoginPage = () => {
           height={50}
           alt="logo"
         />
-        <h1>đăng nhập bằng google</h1>
+        <h1>Đăng nhập bằng google</h1>
       </button>
       <CountdownTimer />
       <h4 className={styles.status}>{loginStatus}</h4>
