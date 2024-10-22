@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const PatrickHandSC = localFont({
-  src: "../fonts/Patrick_Hand_SC/PatrickHandSC-Regular.ttf",
+  src: "../fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf",
   variable: "--font-PatrickHandSC",
 });
 
