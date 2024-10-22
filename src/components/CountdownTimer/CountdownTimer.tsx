@@ -45,7 +45,7 @@ const CountdownTimer: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {timeLeft && <h4>Concert countdown</h4>}
+      {timeLeft && <h4>Concert countdown:</h4>}
       {timeLeft ? (
         <span>
           {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m{" "}
