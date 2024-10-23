@@ -10,3 +10,8 @@
   gap: 5px;
   text-align: center;
 }
+
+.container .AutoLogOut {
+  display: none;
+  appearance: none;
+}

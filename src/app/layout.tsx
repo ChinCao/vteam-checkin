@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const PatrickHandSC = localFont({
   src: "../fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf",
-  variable: "--font-PatrickHandSC",
+  variable: "--font-EB_Garamond",
 });
 
 const Road_Rage = localFont({
@@ -32,16 +32,16 @@ export default function RootLayout({
       <AuthProvider>
         <body className={`${PatrickHandSC.variable} ${Road_Rage.variable}`}>
           {children}
+          <a
+            className={`${PatrickHandSC.variable} vectr-sponsor`}
+            href="https://www.facebook.com/vectr.vcp"
+            target="_blank"
+            rel="noopener"
+          >
+            Trang web này được phát triển và tài trợ bởi CLB VECTR
+            <Image width={25} height={25} src="/vectr.webp" alt="Vectr logo" />
+          </a>
         </body>
-        <a
-          className={`${PatrickHandSC.variable} vectr-sponsor`}
-          href="https://www.facebook.com/vectr.vcp"
-          target="_blank"
-          rel="noopener"
-        >
-          Trang web này được phát triển và tài trợ bởi CLB VECTR
-          <Image width={25} height={25} src="/vectr.webp" alt="Vectr logo" />
-        </a>
       </AuthProvider>
     </html>
   );

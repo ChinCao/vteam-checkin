@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "src/app/signin/auth.js",
     "src/lib/GoogleSpreadsheet/index.js",
-    "src/app/api/SpreadSheet/route.js"
+    "src/app/api/SpreadSheet/route.js",
+    "src/components/CountdownTimer/AutoLogOut.ts"
   ],
   "exclude": ["node_modules"]
 }
