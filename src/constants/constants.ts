@@ -1,4 +1,4 @@
-export const concert_date = new Date("2024-10-23T23:28:10+07:00");
+export const concert_date = new Date("2024-11-01T19:30:00+07:00");
 
 export type SpreadsheetData = [
   string, // 'Index 16'

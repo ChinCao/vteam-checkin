@@ -21,9 +21,10 @@ export default async function Home() {
   if (!sheetData) {
     redirect("/signout/do-not-exist");
   }
-  const csrf = cookies()
-    .get("__Host-next-auth.csrf-token")
-    ?.value.split("|")[0];
+
+  // const csrf =  cookies().get("__Host-next-auth.csrf-token") ?.value.split("|")[0];
+  const csrfToken = (await cookies()).get("__Host-next-auth.csrf-token");
+  const csrf = csrfToken?.value.split("|")[0];
 
   if (!isConcert()) {
     if (sheetData[7] == "TRUE") {
