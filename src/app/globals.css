@@ -1,3 +1,9 @@
+:root {
+  --red-main: #980000;
+  --green-main: green;
+  --orange-main: #f16e22;
+}
+
 html,
 body {
   background: black;
@@ -25,7 +31,7 @@ a {
 .vectr-sponsor {
   font-family: var(--font-EB_Garamond);
   background: black;
-  color: #f16e22;
+  color: var(--orange-main);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +41,7 @@ a {
   flex-wrap: wrap;
   padding: 0.5em;
   gap: 12px;
-  border-top: 1px solid #f16e22;
+  border-top: 1px solid var(--orange-main);
 }
 
 @media (max-width: 576px) {

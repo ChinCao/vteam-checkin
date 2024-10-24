@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import LogoutSpinner from "@/components/Loader/LogoutSpinner";
 import { signOut } from "next-auth/react";
+import { useEffect } from "react";
 
 const Invalid = () => {
   useEffect(() => {
@@ -12,7 +11,6 @@ const Invalid = () => {
     );
     signOut({ redirect: true, callbackUrl: "/signin" });
   });
-  return <LogoutSpinner />;
 };
 
 export default Invalid;

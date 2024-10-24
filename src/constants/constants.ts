@@ -19,3 +19,5 @@ export const isConcert = () => {
   const currentTime = new Date();
   return currentTime > concert_date;
 };
+
+export const red_main = "#980000";

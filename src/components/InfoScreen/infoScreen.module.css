@@ -13,7 +13,7 @@
 
 .page img {
   max-width: 330px;
-  border: 2px dashed green;
+  border: 2px dashed var(--green-main);
 }
 
 .page p {
@@ -37,12 +37,6 @@
   padding: 5px;
 }
 
-.page .verifyStatus {
-  text-transform: uppercase;
-  border: none;
-  background: yellow;
-}
-
 .page button {
   width: 100%;
   font-family: var(--font-EB_Garamond);
@@ -52,18 +46,19 @@
   color: white;
   white-space: nowrap;
   padding: 0.4em 1em;
+  min-width: 110px;
   position: relative;
   z-index: 99;
-  background: green;
+  background: var(--green-main);
   border: 1px solid transparent;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out,
     background 0.3s ease-in-out;
 }
 
 .page button:hover {
-  border-color: green;
+  border-color: var(--green-main);
   background: transparent;
-  color: green;
+  color: var(--green-main);
 }
 
 .page button:active {
@@ -86,7 +81,7 @@
 .page .password input {
   width: 70%;
   height: 45px;
-  border: 1px solid green;
+  border: 1px solid var(--green-main);
   background: transparent;
   text-align: center;
   color: gray;

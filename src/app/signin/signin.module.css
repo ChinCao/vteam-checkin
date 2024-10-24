@@ -9,7 +9,7 @@
   font-family: var(--font-EB_Garamond);
   margin-top: 20px;
   margin-bottom: 10%;
-  background: #980000;
+  background: var(--red-main);
   z-index: 2;
   color: white;
   min-height: 70px;

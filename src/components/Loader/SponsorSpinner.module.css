@@ -1,0 +1,26 @@
+.page,
+.spinner_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.spinner_container {
+  position: relative;
+}
+
+.logo_vectr {
+  position: absolute;
+}
+
+.text {
+  color: var(--orange-main);
+  font-size: 25px;
+  text-align: center;
+}

@@ -28,6 +28,5 @@ export const options = {
   },
   pages: {
     signIn: "/signin",
-    signOut: "/signout",
   },
 };

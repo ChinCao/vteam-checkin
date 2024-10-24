@@ -3,7 +3,7 @@
   height: 90%;
   margin-top: 15px;
   display: block;
-  border: 1px solid green;
+  border: 1px solid var(--green-main);
   position: relative;
   background: #023020;
   box-sizing: border-box;

@@ -1,3 +1,4 @@
+import { red_main } from "@/constants/constants";
 import styles from "./mainlayout.module.css";
 import Image from "next/image";
 
@@ -34,7 +35,7 @@ export default function MainLayout({ color, text, children }: MainLayoutProps) {
             color: color,
           }}
         >
-          {color == "#980000" ? (
+          {color == red_main ? (
             <Image
               className={`${styles.decoration} ${styles.decoration_logout}`}
               priority

@@ -3,7 +3,7 @@ import "./globals.css";
 import AuthProvider from "@/components/AuthContext";
 import Image from "next/image";
 import localFont from "next/font/local";
-
+import LogoutSpinner from "@/components/Loader/SponsorSpinner";
 export const metadata: Metadata = {
   title: "Silencio - Checkin",
   description: "Developed and all right reserved to VTEAM",
@@ -32,6 +32,7 @@ export default function RootLayout({
       <AuthProvider>
         <body className={`${PatrickHandSC.variable} ${Road_Rage.variable}`}>
           {children}
+          <LogoutSpinner />
           <a
             className={`${PatrickHandSC.variable} vectr-sponsor`}
             href="https://linktr.ee/vectr.vcp"
