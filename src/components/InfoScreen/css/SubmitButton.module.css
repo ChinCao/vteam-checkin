@@ -1,0 +1,9 @@
+.wrong {
+  background: var(--red-main) !important;
+}
+
+.wrong:hover {
+  border-color: var(--red-main) !important;
+  color: var(--red-main) !important;
+  background: transparent !important;
+}

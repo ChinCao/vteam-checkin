@@ -1,4 +1,4 @@
-import styles from "./LoadingSpinner.module.css";
+import styles from "./css/LoadingSpinner.module.css";
 
 const LoadingSpinner = ({
   margin_right,

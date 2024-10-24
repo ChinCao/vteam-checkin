@@ -4,10 +4,11 @@ import styles from "./home.module.css";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
-import { cookies } from "next/headers";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
 import { isConcert } from "@/constants/constants";
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import { AutoLogOut } from "@/lib/AutoLogOut";
+import { GetCSRF, DeleteCSRF } from "@/lib/CSRF";
 
 export default async function HomePage() {
   const session = await getServerSession(options);
@@ -22,27 +23,36 @@ export default async function HomePage() {
     redirect("/do-not-exist");
   }
 
-  const csrfToken = (await cookies()).get("__Host-next-auth.csrf-token");
-  const csrf = csrfToken?.value.split("|")[0];
+  const csrf = await GetCSRF();
 
   if (!isConcert()) {
     if (sheetData[7] == "TRUE") {
+      DeleteCSRF();
       redirect("/already-checked-in");
     }
     if (sheetData[6] == "TRUE" && sheetData[10] != csrf) {
+      DeleteCSRF();
       redirect("/already-logged-in");
     }
     await updateSheetData(sheetData, "login", csrf);
   } else {
+    if (await AutoLogOut(session, sheetData, csrf)) {
+      DeleteCSRF();
+      redirect("/concert-relogin");
+    }
     if (!sheetData[1].includes("concert")) {
+      DeleteCSRF();
       redirect("/no-concert-ticket");
     }
     if (sheetData[9] == "TRUE") {
+      DeleteCSRF();
       redirect("/already-checked-in");
     }
     if (sheetData[8] == "TRUE" && sheetData[11] != csrf) {
+      DeleteCSRF();
       redirect("/already-logged-in");
     }
+
     await updateSheetData(sheetData, "login-concert", csrf);
   }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import LoadingSpinner from "@/components/Loader/LoadingSpinner";
-import styles from "./SponsorSpinner.module.css";
+import styles from "./css/SponsorSpinner.module.css";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 

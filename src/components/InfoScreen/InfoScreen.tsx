@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
-import styles from "./infoScreen.module.css";
+import styles from "./css/infoScreen.module.css";
 import Success from "@/components/Success/Success";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";

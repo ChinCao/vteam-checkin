@@ -1,4 +1,4 @@
-import styles from "./LoadingInformation.module.css";
+import styles from "./css/LoadingInformation.module.css";
 
 const LoadingInformation = () => {
   return <span className={styles.loader}></span>;

@@ -2,9 +2,10 @@
 import { concert_date, isConcert } from "@/constants/constants";
 import styles from "./timer.module.css";
 import React, { useState, useEffect, useCallback } from "react";
-import { signOut, useSession } from "next-auth/react";
-import { AutoLogOut } from "./AutoLogOut";
+import { useSession } from "next-auth/react";
+import { AutoLogOut } from "../../lib/AutoLogOut";
 import { useRouter } from "next/navigation";
+import { DeleteCSRF, GetCSRF } from "@/lib/CSRF";
 
 const CountdownTimer: React.FC = () => {
   const targetDate: Date = concert_date;
@@ -41,13 +42,10 @@ const CountdownTimer: React.FC = () => {
 
   useEffect(() => {
     const handleLogout = async () => {
-      const response = await AutoLogOut(session);
+      const response = await AutoLogOut(session, false, await GetCSRF());
       if (response) {
-        localStorage.setItem(
-          "loginStatus",
-          "Bạn hãy login vào lại để check-in concert"
-        );
-        signOut({ redirect: true, callbackUrl: "/signin" });
+        DeleteCSRF();
+        router.push("/concert-relogin");
       }
     };
 
