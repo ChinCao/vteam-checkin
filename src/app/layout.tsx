@@ -7,7 +7,7 @@ import localFont from "next/font/local";
 import LogoutSpinner from "@/components/Loader/SponsorSpinner";
 export const metadata: Metadata = {
   title: "Silencio - Checkin",
-  description: "Developed and all right reserved to VTEAM",
+  description: "Developed and all right reserved to VTEAM & VECTR",
 };
 
 const PatrickHandSC = localFont({
