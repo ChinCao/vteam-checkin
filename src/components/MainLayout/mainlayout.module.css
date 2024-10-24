@@ -20,7 +20,6 @@
 
 .page {
   min-height: 100vh;
-  background: black;
   justify-content: center;
 }
 
@@ -77,6 +76,7 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  background: black;
   overflow: hidden;
   flex: 1;
 }
