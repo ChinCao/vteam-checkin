@@ -27,11 +27,9 @@ export default async function HomePage() {
 
   if (!isConcert()) {
     if (sheetData[7] == "TRUE") {
-      DeleteCSRF();
       redirect("/already-checked-in");
     }
     if (sheetData[6] == "TRUE" && sheetData[10] != csrf) {
-      DeleteCSRF();
       redirect("/already-logged-in");
     }
     await updateSheetData(sheetData, "login", csrf);
@@ -41,15 +39,12 @@ export default async function HomePage() {
       redirect("/concert-relogin");
     }
     if (!sheetData[1].includes("concert")) {
-      DeleteCSRF();
       redirect("/no-concert-ticket");
     }
     if (sheetData[9] == "TRUE") {
-      DeleteCSRF();
       redirect("/already-checked-in");
     }
     if (sheetData[8] == "TRUE" && sheetData[11] != csrf) {
-      DeleteCSRF();
       redirect("/already-logged-in");
     }
 
