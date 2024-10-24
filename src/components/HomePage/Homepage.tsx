@@ -8,7 +8,7 @@ import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
 import { isConcert } from "@/constants/constants";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { AutoLogOut } from "@/lib/AutoLogOut";
-import { GetCSRF, DeleteCSRF } from "@/lib/CSRF";
+import { GetCSRF, DeleteSession } from "@/lib/Tokens";
 
 export default async function HomePage() {
   const session = await getServerSession(options);
@@ -35,7 +35,7 @@ export default async function HomePage() {
     await updateSheetData(sheetData, "login", csrf);
   } else {
     if (await AutoLogOut(session, sheetData, csrf)) {
-      DeleteCSRF();
+      DeleteSession();
       redirect("/concert-relogin");
     }
     if (!sheetData[1].includes("concert")) {

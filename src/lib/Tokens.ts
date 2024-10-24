@@ -8,9 +8,9 @@ export const GetCSRF = async () => {
   return csrf;
 };
 
-export const DeleteCSRF = async () => {
+export const DeleteSession = async () => {
   const cookieStore = cookies();
-  cookieStore.set("__Host-next-auth.csrf-token", "", {
+  cookieStore.set("__Secure-next-auth.session-token", "", {
     maxAge: -1,
   });
 };
