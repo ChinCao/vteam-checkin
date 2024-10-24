@@ -1,4 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import "./globals.css";
 import AuthProvider from "@/components/AuthContext";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <body className={`${PatrickHandSC.variable} ${Road_Rage.variable}`}>
           {children}
           <SpeedInsights />
+          <Analytics />
           <LogoutSpinner />
           <a
             className={`${PatrickHandSC.variable} vectr-sponsor`}
