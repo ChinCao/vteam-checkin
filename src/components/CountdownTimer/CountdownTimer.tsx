@@ -44,7 +44,7 @@ const CountdownTimer: React.FC = () => {
     const handleLogout = async () => {
       const response = await AutoLogOut(session, false, await GetCSRF());
       if (response) {
-        DeleteSession();
+        await DeleteSession();
         router.push("/concert-relogin");
       }
     };
