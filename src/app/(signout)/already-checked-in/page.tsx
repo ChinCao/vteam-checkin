@@ -1,7 +1,8 @@
 "use client";
 
-import { redirect } from "next/navigation";
 import { useEffect } from "react";
+import LogoutSpinner from "@/components/Loader/LogoutSpinner";
+import { signOut } from "next-auth/react";
 
 const Invalid = () => {
   useEffect(() => {
@@ -9,8 +10,9 @@ const Invalid = () => {
       "loginStatus",
       "Xin lỗi, nhưng bạn đã checked-in rồi!"
     );
-    redirect("/signout");
+    signOut({ redirect: true, callbackUrl: "/signin" });
   });
+  return <LogoutSpinner />;
 };
 
 export default Invalid;

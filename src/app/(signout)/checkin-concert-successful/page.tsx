@@ -1,6 +1,7 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import LogoutSpinner from "@/components/Loader/LogoutSpinner";
+import { signOut } from "next-auth/react";
 import { useEffect } from "react";
 
 const Valid = () => {
@@ -9,8 +10,9 @@ const Valid = () => {
       "loginStatus",
       "Chúc bạn có 1 đêm concert thật nồng cháy 🔥"
     );
-    redirect("/signout");
+    signOut({ redirect: true, callbackUrl: "/signin" });
   });
+  return <LogoutSpinner />;
 };
 
 export default Valid;

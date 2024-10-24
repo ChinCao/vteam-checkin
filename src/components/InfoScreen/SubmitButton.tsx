@@ -18,9 +18,9 @@ const SubmitButton = ({ data, password }: { data: any; password: string }) => {
     if (correct) {
       try {
         if (isConcert()) {
-          router.push("/signout/checkin-concert-successful");
+          router.push("/checkin-concert-successful");
         } else {
-          router.push("/signout/checkin-successful");
+          router.push("/checkin-successful");
         }
       } catch (error) {
         setIsLoading(false);

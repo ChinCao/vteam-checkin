@@ -34,12 +34,12 @@ export default function RootLayout({
           {children}
           <a
             className={`${PatrickHandSC.variable} vectr-sponsor`}
-            href="https://www.facebook.com/vectr.vcp"
+            href="https://linktr.ee/vectr.vcp"
             target="_blank"
             rel="noopener"
           >
-            Trang web này được phát triển và tài trợ bởi CLB VECTR
-            <Image width={25} height={25} src="/vectr.webp" alt="Vectr logo" />
+            Website này được phát triển và tài trợ bởi CLB VECTR
+            <Image width={25} height={25} src="/vectr.png" alt="Vectr logo" />
           </a>
         </body>
       </AuthProvider>

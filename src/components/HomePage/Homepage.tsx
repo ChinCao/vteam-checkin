@@ -19,7 +19,7 @@ export default async function HomePage() {
   const sheetData: any = await getSheetData(session?.user?.email);
 
   if (!sheetData) {
-    redirect("/signout/do-not-exist");
+    redirect("/do-not-exist");
   }
 
   const csrfToken = (await cookies()).get("__Host-next-auth.csrf-token");
@@ -27,21 +27,21 @@ export default async function HomePage() {
 
   if (!isConcert()) {
     if (sheetData[7] == "TRUE") {
-      redirect("/signout/already-checked-in");
+      redirect("/already-checked-in");
     }
     if (sheetData[6] == "TRUE" && sheetData[10] != csrf) {
-      redirect("/signout/already-logged-in");
+      redirect("/already-logged-in");
     }
     await updateSheetData(sheetData, "login", csrf);
   } else {
     if (!sheetData[1].includes("concert")) {
-      redirect("/signout/no-concert-ticket");
+      redirect("/no-concert-ticket");
     }
     if (sheetData[9] == "TRUE") {
-      redirect("/signout/already-checked-in");
+      redirect("/already-checked-in");
     }
     if (sheetData[8] == "TRUE" && sheetData[11] != csrf) {
-      redirect("/signout/already-logged-in");
+      redirect("/already-logged-in");
     }
     await updateSheetData(sheetData, "login-concert", csrf);
   }
