@@ -1,3 +1,4 @@
+import { TICKET_TYPE_INDEX } from "@/constants/constants";
 import Decoration from "../Decoration/Decoration";
 import styles from "./mainlayout.module.css";
 import Image from "next/image";
@@ -75,9 +76,9 @@ export default function MainLayout({
             className={styles.banner}
             priority
             src={
-              sheetData[1].includes("Nguyệt")
+              sheetData[TICKET_TYPE_INDEX].includes("Nguyệt")
                 ? "/nguyet.png"
-                : sheetData[1].includes("Bầu")
+                : sheetData[TICKET_TYPE_INDEX].includes("Bầu")
                 ? "/bau.png"
                 : "/nhi.png"
             }

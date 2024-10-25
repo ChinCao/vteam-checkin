@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
+import {
+  CHECKIN_INDEX,
+  CONCERT_LOGIN_INDEX,
+  LOGIN_INDEX,
+} from "@/constants/constants";
 import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
 
 export async function AutoLogOut(session, data, csrf) {
@@ -12,9 +17,9 @@ export async function AutoLogOut(session, data, csrf) {
         sheetData = await getSheetData(session?.user?.email);
       }
       if (
-        sheetData[6] == "TRUE" &&
-        sheetData[7] == "FALSE" &&
-        sheetData[8] == "FALSE"
+        sheetData[LOGIN_INDEX] == "TRUE" &&
+        sheetData[CHECKIN_INDEX] == "FALSE" &&
+        sheetData[CONCERT_LOGIN_INDEX] == "FALSE"
       ) {
         await updateSheetData(sheetData, "check-in", csrf);
         return true;

@@ -38,7 +38,7 @@ export const getSheetData = async (authenticated_email) => {
     }
     return null;
   } catch (error) {
-    console.log(error);
+    return NextResponse.json({ message: "Error", error }, { status: 500 });
   }
 };
 

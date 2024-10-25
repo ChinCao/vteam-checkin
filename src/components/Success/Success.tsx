@@ -1,4 +1,12 @@
-import { ISCONCERT, SpreadsheetData } from "@/constants/constants";
+import {
+  CLASS_INDEX,
+  ISCONCERT,
+  NAME_INDEX,
+  SpreadsheetData,
+  STUDENTID_INDEX,
+  TICKET_TYPE_INDEX,
+  TICKET_WITH_CONCERT,
+} from "@/constants/constants";
 import styles from "./success.module.css";
 
 const Success = ({
@@ -17,19 +25,24 @@ const Success = ({
             {ISCONCERT() ? "concert" : "Silencio"}
           </p>
           <h1>
-            Tên: <span>{data[2].toUpperCase()}</span>
+            Tên: <span>{data[NAME_INDEX].toUpperCase()}</span>
           </h1>
           <h1>
-            Lớp: <span>{data[3].toUpperCase()}</span>
+            Lớp: <span>{data[CLASS_INDEX].toUpperCase()}</span>
           </h1>
           <h1>
-            Mã số HS: <span>{data[4].toUpperCase()}</span>
+            Mã số HS: <span>{data[STUDENTID_INDEX].toUpperCase()}</span>
           </h1>
           <h1>
-            Hạng vé: <span>{data[1].toUpperCase()}</span>
+            Hạng vé: <span>{data[TICKET_TYPE_INDEX].toUpperCase()}</span>
           </h1>
           <h1>
-            Concert: <span>{data[1].includes("concert") ? "CÓ" : "KHÔNG"}</span>
+            Concert:{" "}
+            <span>
+              {data[TICKET_TYPE_INDEX].includes(TICKET_WITH_CONCERT)
+                ? "CÓ"
+                : "KHÔNG"}
+            </span>
           </h1>
         </div>
       )}
