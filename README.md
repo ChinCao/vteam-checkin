@@ -39,5 +39,9 @@ Each scenario is encapsulated in a separate component within the `src/app/(signo
 ## License
 
 Developed and all rights reserved to VTEAM & VECTR.
-![VTEAM Logo](/public/logo-transparent.png)[[VTEAM_LINK](https://linktr.ee/VTEAM_VCP)]
-![VECTR Logo](/public/vectr.png)[[VECTR_LINK](https://linktr.ee/vectr.vcp)]
+<a href="https://linktr.ee/VTEAM_VCP" target="_blank">
+<img src="/public/logo-transparent.png" alt="VTEAM Logo" width="120" height="100" />
+</a>
+<a href="https://linktr.ee/vectr.vcp" target="_blank">
+<img src="/public/vectr.png" alt="Vectr Logo" width="100" height="100" />
+</a>
