@@ -96,6 +96,7 @@
 .main {
   border-radius: 5px;
   position: relative;
+  min-height: 650px;
   display: flex;
   justify-content: center;
   padding: 20px;
