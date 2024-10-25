@@ -2,7 +2,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Checkin } from "./Checkin";
-import { isConcert } from "@/constants/constants";
+import { ISCONCERT } from "@/constants/constants";
 import styles from "./css/SubmitButton.module.css";
 import { useState } from "react";
 import LoadingSpinner from "../Loader/LoadingSpinner";
@@ -20,7 +20,7 @@ const SubmitButton = ({ data, password }: { data: any; password: string }) => {
     if (correct) {
       setIsCorrect(true);
       try {
-        if (isConcert()) {
+        if (ISCONCERT()) {
           router.push("/checkin-concert-successful");
         } else {
           router.push("/checkin-successful");

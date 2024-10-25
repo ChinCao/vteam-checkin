@@ -5,7 +5,17 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
-import { isConcert, ticket_with_conert } from "@/constants/constants";
+import {
+  CHECKIN_INDEX,
+  CONCERT_CHECKIN_INDEX,
+  CONCERT_LOGIN_INDEX,
+  CSRF_CONCERT,
+  CSRF_SILENCIO,
+  ISCONCERT,
+  LOGIN_INDEX,
+  TICKET_TYPE_INDEX,
+  TICKET_WITH_CONCERT,
+} from "@/constants/constants";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { AutoLogOut } from "@/lib/AutoLogOut";
 import { GetCSRF } from "@/lib/Tokens";
@@ -25,11 +35,11 @@ export default async function HomePage() {
 
   const csrf = await GetCSRF();
 
-  if (!isConcert()) {
-    if (sheetData[7] == "TRUE") {
+  if (!ISCONCERT()) {
+    if (sheetData[CHECKIN_INDEX] == "TRUE") {
       redirect("/already-checked-in");
     }
-    if (sheetData[6] == "TRUE" && sheetData[10] != csrf) {
+    if (sheetData[LOGIN_INDEX] == "TRUE" && sheetData[CSRF_SILENCIO] != csrf) {
       redirect("/already-logged-in");
     }
     await updateSheetData(sheetData, "login", csrf);
@@ -37,13 +47,16 @@ export default async function HomePage() {
     if (await AutoLogOut(session, sheetData, csrf)) {
       redirect("/concert-relogin");
     }
-    if (!sheetData[1].includes("concert")) {
+    if (!sheetData[TICKET_TYPE_INDEX].includes("concert")) {
       redirect("/no-concert-ticket");
     }
-    if (sheetData[9] == "TRUE") {
+    if (sheetData[CONCERT_CHECKIN_INDEX] == "TRUE") {
       redirect("/already-checked-in");
     }
-    if (sheetData[8] == "TRUE" && sheetData[11] != csrf) {
+    if (
+      sheetData[CONCERT_LOGIN_INDEX] == "TRUE" &&
+      sheetData[CSRF_CONCERT] != csrf
+    ) {
       redirect("/already-logged-in");
     }
 
@@ -58,7 +71,7 @@ export default async function HomePage() {
       <>
         <InfoScreen data={sheetData} />
         <h5 className={styles.status}>
-          {sheetData[1].includes(ticket_with_conert) ? (
+          {sheetData[1].includes(TICKET_WITH_CONCERT) ? (
             <>
               <CountdownTimer />
               Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!

@@ -1,8 +1,8 @@
-export const concert_date = new Date("2024-11-01T19:35:00+07:00");
+export const CONCERT_DATE = new Date("2024-11-01T19:35:00+07:00");
 
 export type SpreadsheetData = [
-  string, // 'Index 16'
-  string, // 'Tía (9-10-11-12, có concert)'
+  string, // 'Index 16 STT'
+  string, // 'Bầu (9-10-11-12, có concert)'
   string, // 'Cao Cự Chính'
   string, // '11B4'
   string, // 'VS054678'
@@ -15,11 +15,32 @@ export type SpreadsheetData = [
   string //  csrf concert
 ];
 
-export const isConcert = () => {
+export const ROW_SHIFT = 2;
+export const STT_INDEX = 0;
+export const TICKET_TYPE_INDEX = 1;
+export const NAME_INDEX = 2;
+export const CLASS_INDEX = 3;
+export const STUDENTID_INDEX = 4;
+export const EMAIL_INDEX = 5;
+export const LOGIN_INDEX = 6;
+export const CHECKIN_INDEX = 7;
+export const CONCERT_LOGIN_INDEX = 8;
+export const CONCERT_CHECKIN_INDEX = 9;
+export const CSRF_SILENCIO = 10;
+export const CSRF_CONCERT = 11;
+
+export const LOGIN_COLUMN = "G";
+export const CHECK_IN_COLUMN = "H";
+export const CONCERT_LOGIN_COLUMN = "I";
+export const CONCERT_CHECKIN_COLUMN = "J";
+export const CSRF_SILENCIO_COLUMN = "K";
+export const CSRF_CONCERT_COLUMN = "L";
+
+export const ISCONCERT = () => {
   const currentTime = new Date();
-  return currentTime > concert_date;
+  return currentTime > CONCERT_DATE;
 };
 
-export const red_main = "#980000";
+export const RED_MAIN = "#980000";
 
-export const ticket_with_conert = "Bầu";
+export const TICKET_WITH_CONCERT = "Bầu";

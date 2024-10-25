@@ -83,7 +83,7 @@ export default function MainLayout({
             }
             width={1100}
             height={120}
-            alt="logo"
+            alt="banner"
             style={{ borderColor: color }}
           />
         ) : null}

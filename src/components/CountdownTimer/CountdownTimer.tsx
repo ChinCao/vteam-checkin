@@ -1,5 +1,5 @@
 "use client";
-import { concert_date, isConcert } from "@/constants/constants";
+import { CONCERT_DATE, ISCONCERT } from "@/constants/constants";
 import styles from "./timer.module.css";
 import React, { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { GetCSRF } from "@/lib/Tokens";
 
 const CountdownTimer: React.FC = () => {
-  const targetDate: Date = concert_date;
+  const targetDate: Date = CONCERT_DATE;
   const router = useRouter();
 
   interface TimeLeft {
@@ -48,7 +48,7 @@ const CountdownTimer: React.FC = () => {
       }
     };
 
-    if (!isConcert()) {
+    if (!ISCONCERT()) {
       const timer = setInterval(async () => {
         const newTimeLeft = calculateTimeLeft();
         setTimeLeft(newTimeLeft);

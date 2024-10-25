@@ -1,4 +1,4 @@
-import { isConcert, SpreadsheetData } from "@/constants/constants";
+import { ISCONCERT, SpreadsheetData } from "@/constants/constants";
 import styles from "./success.module.css";
 
 const Success = ({
@@ -14,7 +14,7 @@ const Success = ({
         <div className={styles.container}>
           <p className={styles.noti}>
             Đưa màn hình này cho staff VTEAM để check-in{" "}
-            {isConcert() ? "concert" : "Silencio"}
+            {ISCONCERT() ? "concert" : "Silencio"}
           </p>
           <h1>
             Tên: <span>{data[2].toUpperCase()}</span>

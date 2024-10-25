@@ -1,11 +1,11 @@
-import { red_main } from "@/constants/constants";
+import { RED_MAIN } from "@/constants/constants";
 import Image from "next/image";
 import styles from "./Decoration.module.css";
 
 const Decoration = ({ color }: { color: string }) => {
   return (
     <>
-      {color == red_main ? (
+      {color == RED_MAIN ? (
         <Image
           className={`${styles.decoration} ${styles.decoration_logout}`}
           priority
@@ -25,7 +25,7 @@ const Decoration = ({ color }: { color: string }) => {
         />
       )}
 
-      {color == red_main ? (
+      {color == RED_MAIN ? (
         <div className={styles.lantern_container}>
           <div className={styles.glow}></div>
           <Image

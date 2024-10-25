@@ -1,4 +1,17 @@
+import {
+  CHECK_IN_COLUMN,
+  CONCERT_CHECKIN_COLUMN,
+  CONCERT_LOGIN_COLUMN,
+  CONCERT_LOGIN_INDEX,
+  CSRF_CONCERT_COLUMN,
+  CSRF_SILENCIO_COLUMN,
+  EMAIL_INDEX,
+  LOGIN_COLUMN,
+  ROW_SHIFT,
+  STT_INDEX,
+} from "@/constants/constants";
 import { google } from "googleapis";
+import { NextResponse } from "next/server";
 
 const auth = new google.auth.GoogleAuth({
   credentials: {
@@ -18,8 +31,8 @@ export const getSheetData = async (authenticated_email) => {
     });
 
     let data = response.data.values;
-    for (let i = 2; i < data.length; i++) {
-      if (data[i][5] == authenticated_email) {
+    for (let i = ROW_SHIFT; i < data.length; i++) {
+      if (data[i][EMAIL_INDEX] == authenticated_email) {
         return data[i];
       }
     }
@@ -32,16 +45,18 @@ export const getSheetData = async (authenticated_email) => {
 export const updateSheetData = async (data, eventType, csrfToken = "") => {
   let cell = null;
   if (eventType == "login") {
-    cell = "G";
+    cell = LOGIN_COLUMN;
   } else if (eventType == "check-in") {
-    cell = "H";
+    cell = CHECK_IN_COLUMN;
   } else if (eventType == "login-concert") {
-    cell = "I";
+    cell = CONCERT_LOGIN_COLUMN;
   } else if (eventType == "check-in-concert") {
-    cell = "J";
+    cell = CONCERT_CHECKIN_COLUMN;
   }
   const sheets = google.sheets({ version: "v4", auth: await auth.getClient() });
-  const range = `'SHEET CHECK IN'!${cell}${parseInt(data[0]) + 2}`;
+  const range = `'SHEET CHECK IN'!${cell}${
+    parseInt(data[STT_INDEX]) + ROW_SHIFT
+  }`;
 
   try {
     await sheets.spreadsheets.values.update({
@@ -54,13 +69,17 @@ export const updateSheetData = async (data, eventType, csrfToken = "") => {
     });
     let token_range = null;
     if (eventType == "login" && csrfToken && data[6] == "FALSE") {
-      token_range = `'SHEET CHECK IN'!K${parseInt(data[0]) + 2}`;
+      token_range = `'SHEET CHECK IN'!${CSRF_SILENCIO_COLUMN}${
+        parseInt(data[STT_INDEX]) + ROW_SHIFT
+      }`;
     } else if (
       eventType == "login-concert" &&
       csrfToken &&
-      data[8] == "FALSE"
+      data[CONCERT_LOGIN_INDEX] == "FALSE"
     ) {
-      token_range = `'SHEET CHECK IN'!L${parseInt(data[0]) + 2}`;
+      token_range = `'SHEET CHECK IN'!${CSRF_CONCERT_COLUMN}${
+        parseInt(data[STT_INDEX]) + ROW_SHIFT
+      }`;
     }
     try {
       await sheets.spreadsheets.values.update({
@@ -72,9 +91,9 @@ export const updateSheetData = async (data, eventType, csrfToken = "") => {
         },
       });
     } catch (error) {
-      console.log(error);
+      return NextResponse.json({ message: "Error", error }, { status: 500 });
     }
   } catch (error) {
-    console.log(error);
+    return NextResponse.json({ message: "Error", error }, { status: 500 });
   }
 };
