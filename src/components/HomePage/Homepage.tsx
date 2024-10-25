@@ -35,7 +35,6 @@ export default async function HomePage() {
     await updateSheetData(sheetData, "login", csrf);
   } else {
     if (await AutoLogOut(session, sheetData, csrf)) {
-      // await DeleteSession();
       redirect("/concert-relogin");
     }
     if (!sheetData[1].includes("concert")) {

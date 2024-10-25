@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { AutoLogOut } from "../../lib/AutoLogOut";
 import { useRouter } from "next/navigation";
-import { DeleteSession, GetCSRF } from "@/lib/Tokens";
+import { GetCSRF } from "@/lib/Tokens";
 
 const CountdownTimer: React.FC = () => {
   const targetDate: Date = concert_date;
@@ -44,7 +44,6 @@ const CountdownTimer: React.FC = () => {
     const handleLogout = async () => {
       const response = await AutoLogOut(session, false, await GetCSRF());
       if (response) {
-        await DeleteSession();
         router.push("/concert-relogin");
       }
     };

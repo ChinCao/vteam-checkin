@@ -7,7 +7,3 @@ export const GetCSRF = async () => {
   const csrf = csrfToken?.value.split("|")[0];
   return csrf;
 };
-
-export const DeleteSession = async () => {
-  cookies().delete("__Secure-next-auth.session-token");
-};
