@@ -9,6 +9,7 @@
   min-height: 100vh;
   flex-direction: column;
   gap: 20px;
+  padding: 0 2em;
 }
 
 .spinner_container {
