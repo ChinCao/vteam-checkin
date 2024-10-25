@@ -1,19 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import LoadingInformation from "@/components/Loader/LoadingInformation";
+import { Suspense } from "react";
+import Home from "./Home";
 
-import HomePage from "@/components/HomePage/Homepage";
-import MainLayout from "@/components/MainLayout/MainLayout";
-
-export default async function Home() {
-  const { props, component } = await HomePage();
-
+export default async function Page() {
   return (
-    <MainLayout
-      color="green"
-      text="thông tin vé"
-      banner={true}
-      sheetData={props.sheetData}
-    >
-      {component}
-    </MainLayout>
+    <Suspense fallback={<LoadingInformation />}>
+      <Home />
+    </Suspense>
   );
 }
