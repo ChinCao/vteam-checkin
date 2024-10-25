@@ -25,6 +25,7 @@
 
 .logo_vteam {
   filter: invert(1);
+  pointer-events: none;
 }
 
 .logo {
@@ -67,6 +68,7 @@
 
 .silencio {
   width: 100%;
+  pointer-events: none;
   object-fit: contain;
 }
 
@@ -100,6 +102,31 @@
 .decoration_logout {
   top: 0%;
   left: -1%;
+}
+
+.lantern_logout {
+  top: 0;
+}
+
+.lantern_logout {
+  right: -7%;
+}
+
+.glow {
+  content: "";
+  position: absolute;
+  background: radial-gradient(
+    crimson,
+    var(--red-main),
+    transparent,
+    transparent,
+    transparent
+  );
+  width: 331px;
+  height: 312px;
+  top: -12%;
+  opacity: 0.5;
+  right: -20.5%;
 }
 
 @media (max-width: 1200px) {
@@ -140,6 +167,14 @@
 }
 
 @media (max-width: 450px) {
+  .glow {
+    right: -27%;
+  }
+
+  .lantern_logout {
+    right: -12%;
+  }
+
   .silencio {
     width: 80%;
   }
@@ -147,6 +182,16 @@
   .decoration_login {
     left: -80%;
     top: -5%;
-    height: 881px;
+    height: 885px;
+  }
+}
+
+@media (max-width: 390px) {
+  .glow {
+    right: -32%;
+  }
+
+  .lantern_logout {
+    right: -14%;
   }
 }

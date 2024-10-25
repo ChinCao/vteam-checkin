@@ -54,6 +54,23 @@ export default function MainLayout({ color, text, children }: MainLayoutProps) {
               alt="decoration"
             />
           )}
+
+          {color == red_main ? (
+            <div className={styles.lantern_container}>
+              <div className={styles.glow}></div>
+              <Image
+                className={`${styles.decoration} ${styles.lantern_logout}`}
+                priority
+                src="/lantern.png"
+                width={200}
+                height={200}
+                alt="decoration"
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           <div className={styles.header}>
             <div className={styles.logo}>
               <Image
