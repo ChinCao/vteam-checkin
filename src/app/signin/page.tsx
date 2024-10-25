@@ -46,7 +46,7 @@ const LoginPage = () => {
   }, [session?.user?.email, status]);
 
   return (
-    <MainLayout color="#980000" text="cổng đăng nhập">
+    <MainLayout color="#980000" text="cổng đăng nhập" banner={false}>
       <button
         className={styles.google}
         onClick={handleGoogleSignIn}

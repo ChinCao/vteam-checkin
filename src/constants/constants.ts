@@ -21,3 +21,5 @@ export const isConcert = () => {
 };
 
 export const red_main = "#980000";
+
+export const ticket_with_conert = "Bầu";

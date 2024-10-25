@@ -20,6 +20,7 @@
 
 .page {
   min-height: 100vh;
+  margin: 2em 0;
   justify-content: center;
 }
 
@@ -33,18 +34,38 @@
 }
 
 .wrapper {
+  border-color: var(--green-main);
+  display: flex;
+  border: 2px solid var(--green-main);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+}
+
+.main_content {
   overflow: hidden;
   width: max-content;
   max-height: 720px;
-  max-width: 1100px;
+  width: 100%;
   display: flex;
   align-items: stretch;
-  border-radius: 5px;
-  margin: 1em 0;
-  border: 2px solid transparent;
+  border-bottom: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   background-size: contain;
   background-size: 60%;
   background-repeat: no-repeat;
+}
+
+.banner {
+  border-top: 2px solid var(--green-main);
+  color: transparent;
+  width: 100%;
+  border-color: var(--green-main);
+  object-fit: fill;
+  object-position: 0%;
+  pointer-events: none;
 }
 
 .header,
@@ -88,47 +109,6 @@
   width: 90%;
 }
 
-.decoration {
-  position: absolute;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.decoration_login {
-  left: -43%;
-  top: 0%;
-}
-
-.decoration_logout {
-  top: 0%;
-  left: -1%;
-}
-
-.lantern_logout {
-  top: 0;
-}
-
-.lantern_logout {
-  right: -7%;
-}
-
-.glow {
-  content: "";
-  position: absolute;
-  background: radial-gradient(
-    crimson,
-    var(--red-main),
-    transparent,
-    transparent,
-    transparent
-  );
-  width: 331px;
-  height: 312px;
-  top: -12%;
-  opacity: 0.5;
-  right: -20.5%;
-}
-
 @media (max-width: 1200px) {
   .wrapper {
     width: 90%;
@@ -141,13 +121,12 @@
     min-height: 650px;
   }
 
-  .decoration_logout {
-    top: -8%;
-    left: -1%;
-  }
-
   .poster_container {
     display: none;
+  }
+
+  .banner {
+    object-fit: cover;
   }
 }
 
@@ -157,41 +136,13 @@
     max-height: max-content;
   }
 
-  .decoration_login {
-    width: 779px;
-    height: 820px;
-    object-fit: fill;
-    left: -47%;
-    top: 0%;
+  .main_content {
+    max-height: max-content;
   }
 }
 
 @media (max-width: 450px) {
-  .glow {
-    right: -27%;
-  }
-
-  .lantern_logout {
-    right: -12%;
-  }
-
   .silencio {
     width: 80%;
-  }
-
-  .decoration_login {
-    left: -80%;
-    top: -5%;
-    height: 885px;
-  }
-}
-
-@media (max-width: 390px) {
-  .glow {
-    right: -32%;
-  }
-
-  .lantern_logout {
-    right: -14%;
   }
 }

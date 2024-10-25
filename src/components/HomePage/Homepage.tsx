@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { getSheetData, updateSheetData } from "@/lib/GoogleSpreadsheet";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
-import { isConcert } from "@/constants/constants";
+import { isConcert, ticket_with_conert } from "@/constants/constants";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { AutoLogOut } from "@/lib/AutoLogOut";
 import { GetCSRF } from "@/lib/Tokens";
@@ -50,19 +50,24 @@ export default async function HomePage() {
     await updateSheetData(sheetData, "login-concert", csrf);
   }
 
-  return (
-    <>
-      <InfoScreen data={sheetData} />
-      <h5 className={styles.status}>
-        {sheetData[1].includes("concert") ? (
-          <>
-            <CountdownTimer />
-            Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!
-          </>
-        ) : (
-          ""
-        )}
-      </h5>
-    </>
-  );
+  return {
+    props: {
+      sheetData,
+    },
+    component: (
+      <>
+        <InfoScreen data={sheetData} />
+        <h5 className={styles.status}>
+          {sheetData[1].includes(ticket_with_conert) ? (
+            <>
+              <CountdownTimer />
+              Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!
+            </>
+          ) : (
+            ""
+          )}
+        </h5>
+      </>
+    ),
+  };
 }
