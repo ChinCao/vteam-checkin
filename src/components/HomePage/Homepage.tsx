@@ -8,7 +8,7 @@ import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
 import { isConcert } from "@/constants/constants";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { AutoLogOut } from "@/lib/AutoLogOut";
-import { GetCSRF, DeleteSession } from "@/lib/Tokens";
+import { GetCSRF } from "@/lib/Tokens";
 
 export default async function HomePage() {
   const session = await getServerSession(options);
