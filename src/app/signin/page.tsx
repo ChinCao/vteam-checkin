@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
 import LoadingSpinner from "@/components/Loader/LoadingSpinner";
 import { NextResponse } from "next/server";
+import { RED_MAIN } from "@/constants/constants";
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,10 +44,17 @@ const LoginPage = () => {
       }
       setLoginStatus(existingValue!);
     }
+    return () => {
+      setIsLoading(false);
+    };
   }, [session?.user?.email, status]);
 
   return (
-    <MainLayout color="#980000" text="cổng đăng nhập" banner={false}>
+    <MainLayout
+      theme={{ color: RED_MAIN, name: "" }}
+      text="cổng đăng nhập"
+      banner={false}
+    >
       <button
         className={styles.google}
         onClick={handleGoogleSignIn}

@@ -2,16 +2,16 @@
 
 import HomePage from "@/components/HomePage/Homepage";
 import MainLayout from "@/components/MainLayout/MainLayout";
+import { GET_THEME } from "@/constants/constants";
 
 export default async function Home() {
   const { props, component } = await HomePage();
 
   return (
     <MainLayout
-      color="green"
+      theme={GET_THEME(props.sheetData)}
       text="thông tin vé"
       banner={true}
-      sheetData={props.sheetData}
     >
       {component}
     </MainLayout>

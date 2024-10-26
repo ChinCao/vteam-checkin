@@ -34,9 +34,8 @@
 }
 
 .wrapper {
-  border-color: var(--green-main);
   display: flex;
-  border: 2px solid var(--green-main);
+  border: 2px solid;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -59,10 +58,9 @@
 }
 
 .banner {
-  border-top: 2px solid var(--green-main);
+  border-top: 2px solid;
   color: transparent;
   width: 100%;
-  border-color: var(--green-main);
   object-fit: fill;
   object-position: 0%;
   pointer-events: none;

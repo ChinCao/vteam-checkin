@@ -4,6 +4,7 @@ import {
   NAME_INDEX,
   SpreadsheetData,
   STUDENTID_INDEX,
+  Theme,
   TICKET_TYPE_INDEX,
   TICKET_WITH_CONCERT,
 } from "@/constants/constants";
@@ -12,14 +13,16 @@ import styles from "./success.module.css";
 const Success = ({
   display,
   data,
+  theme,
 }: {
   display: boolean;
   data: SpreadsheetData;
+  theme: Theme;
 }) => {
   return (
     <>
       {!display && (
-        <div className={styles.container}>
+        <div className={styles.container} style={{ color: theme.color }}>
           <p className={styles.noti}>
             Đưa màn hình này cho staff VTEAM để check-in{" "}
             {ISCONCERT() ? "concert" : "Silencio"}

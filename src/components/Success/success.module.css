@@ -1,10 +1,9 @@
 .container {
   margin-top: 20px;
-  color: var(--green-main);
 }
 
 .container h1 span {
-  color: var(--red-main);
+  color: var(--orange-main);
 }
 
 .container .noti {

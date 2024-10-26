@@ -1,10 +1,10 @@
-import { TICKET_TYPE_INDEX } from "@/constants/constants";
+import { Theme } from "@/constants/constants";
 import Decoration from "../Decoration/Decoration";
 import styles from "./mainlayout.module.css";
 import Image from "next/image";
 
 interface MainLayoutProps {
-  color: string;
+  theme: Theme;
   text: string;
   banner: boolean;
   children: React.ReactNode;
@@ -13,10 +13,9 @@ interface MainLayoutProps {
 }
 
 export default function MainLayout({
-  color,
+  theme,
   text,
   banner,
-  sheetData,
   children,
 }: MainLayoutProps) {
   return (
@@ -24,7 +23,7 @@ export default function MainLayout({
       <div
         className={styles.wrapper}
         style={{
-          borderColor: color,
+          borderColor: theme.color,
         }}
       >
         <div className={styles.main_content}>
@@ -35,15 +34,15 @@ export default function MainLayout({
               src="/poster.jpg"
               width={720}
               height={720}
-              alt="logo"
-              style={{ borderColor: color }}
+              alt="poster"
+              style={{ borderColor: theme.color }}
             />
           </div>
 
           <main
             className={styles.main}
             style={{
-              color: color,
+              color: theme.color,
             }}
           >
             <div className={styles.header}>
@@ -66,7 +65,7 @@ export default function MainLayout({
                 />
               </div>
             </div>
-            <Decoration color={color} />
+            <Decoration theme={theme ? theme.name : ""} />
             <h1 className={styles.title}>{text}</h1>
             {children}
           </main>
@@ -76,16 +75,16 @@ export default function MainLayout({
             className={styles.banner}
             priority
             src={
-              sheetData[TICKET_TYPE_INDEX].includes("Nguyệt")
+              theme.name == "Nguyệt"
                 ? "/nguyet.png"
-                : sheetData[TICKET_TYPE_INDEX].includes("Bầu")
+                : theme.name == "Bầu"
                 ? "/bau.png"
                 : "/nhi.png"
             }
             width={1100}
             height={120}
             alt="banner"
-            style={{ borderColor: color }}
+            style={{ borderColor: theme.color }}
           />
         ) : null}
       </div>

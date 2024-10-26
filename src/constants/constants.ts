@@ -42,5 +42,21 @@ export const ISCONCERT = () => {
 };
 
 export const RED_MAIN = "#980000";
-
+export const GREEN_MAIN = "green";
+export const MAGENTA_MAIN = "#e27be0";
 export const TICKET_WITH_CONCERT = "Bầu";
+export const TICKET_GRADE_6_7_8 = "Nguyệt";
+export const TICKET_9_10_11_12 = "Nhị";
+
+export interface Theme {
+  color: string;
+  name: string;
+}
+
+export const GET_THEME = (sheetData: SpreadsheetData) => {
+  return sheetData[TICKET_TYPE_INDEX].includes(TICKET_GRADE_6_7_8)
+    ? { color: MAGENTA_MAIN, name: TICKET_GRADE_6_7_8 }
+    : sheetData[TICKET_TYPE_INDEX].includes(TICKET_WITH_CONCERT)
+    ? { color: GREEN_MAIN, name: TICKET_WITH_CONCERT }
+    : { color: RED_MAIN, name: TICKET_9_10_11_12 };
+};

@@ -1,11 +1,14 @@
-import { RED_MAIN } from "@/constants/constants";
+"use client";
 import Image from "next/image";
 import styles from "./Decoration.module.css";
+import { useSession } from "next-auth/react";
 
-const Decoration = ({ color }: { color: string }) => {
+const Decoration = ({ theme }: { theme: string }) => {
+  const { data: session } = useSession();
+
   return (
     <>
-      {color == RED_MAIN ? (
+      {!session ? (
         <Image
           className={`${styles.decoration} ${styles.decoration_logout}`}
           priority
@@ -22,10 +25,18 @@ const Decoration = ({ color }: { color: string }) => {
           width={720}
           height={720}
           alt="decoration"
+          style={{
+            filter:
+              theme == "Nguyệt"
+                ? "hue-rotate(573deg) saturate(2) contrast(1.2)"
+                : theme == "Nhị"
+                ? "hue-rotate(-82deg) saturate(2.4) contrast(1.4)"
+                : "",
+          }}
         />
       )}
 
-      {color == RED_MAIN ? (
+      {!session ? (
         <div className={styles.lantern_container}>
           <div className={styles.glow}></div>
           <Image
