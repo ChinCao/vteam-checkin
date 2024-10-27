@@ -20,12 +20,14 @@ const SubmitButton = ({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isCorrect, setIsCorrect] = useState(true);
+  const [disappear, setDisappear] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
     const correct = await Checkin(data, password);
     if (correct) {
+      setDisappear(true);
       setIsCorrect(true);
       try {
         if (ISCONCERT()) {
@@ -44,29 +46,33 @@ const SubmitButton = ({
   };
 
   return (
-    <button
-      type="submit"
-      disabled={isLoading}
-      onClick={handleSubmit}
-      style={{ background: theme.color }}
-      className={!isCorrect ? styles.wrong : ""}
-      onMouseEnter={(e: any) => {
-        e.target.style.borderColor = theme.color;
-        e.target.style.color = theme.color;
-        e.target.style.background = "transparent";
-      }}
-      onMouseLeave={(e: any) => {
-        e.target.style.borderColor = "transparent";
-        e.target.style.color = "white";
-        e.target.style.background = theme.color;
-      }}
-    >
-      {isLoading ? (
-        <LoadingSpinner size="20px" />
-      ) : (
-        <>{isCorrect ? "Check-in" : "Sai mã"}</>
-      )}
-    </button>
+    <>
+      {!disappear ? (
+        <button
+          type="submit"
+          disabled={isLoading}
+          onClick={handleSubmit}
+          style={{ background: theme.color }}
+          className={!isCorrect ? styles.wrong : ""}
+          onMouseEnter={(e: any) => {
+            e.target.style.borderColor = theme.color;
+            e.target.style.color = theme.color;
+            e.target.style.background = "transparent";
+          }}
+          onMouseLeave={(e: any) => {
+            e.target.style.borderColor = "transparent";
+            e.target.style.color = "white";
+            e.target.style.background = theme.color;
+          }}
+        >
+          {isLoading ? (
+            <LoadingSpinner size="20px" />
+          ) : (
+            <>{isCorrect ? "Check-in" : "Sai mã"}</>
+          )}
+        </button>
+      ) : null}
+    </>
   );
 };
 
