@@ -19,6 +19,9 @@ const CountdownTimer: React.FC = () => {
   }
   const { data: session } = useSession();
 
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const [mounted, setMounted] = useState(false); // Track if component has mounted
+
   const calculateTimeLeft = useCallback((): TimeLeft | null => {
     const now: Date = new Date();
     const difference: number = targetDate.getTime() - now.getTime();
@@ -36,9 +39,9 @@ const CountdownTimer: React.FC = () => {
     return null;
   }, [targetDate]);
 
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(
-    calculateTimeLeft()
-  );
+  useEffect(() => {
+    setMounted(true); // Set mounted to true after the first render
+  }, []);
 
   useEffect(() => {
     const handleLogout = async () => {
@@ -48,7 +51,7 @@ const CountdownTimer: React.FC = () => {
       }
     };
 
-    if (!ISCONCERT()) {
+    if (!ISCONCERT() && mounted) {
       const timer = setInterval(async () => {
         const newTimeLeft = calculateTimeLeft();
         setTimeLeft(newTimeLeft);
@@ -57,10 +60,12 @@ const CountdownTimer: React.FC = () => {
           await handleLogout();
         }
       }, 1000);
+
+      return () => clearInterval(timer); // Cleanup interval on unmount
     } else {
       setTimeLeft(null);
     }
-  }, [calculateTimeLeft, router, session]);
+  }, [calculateTimeLeft, router, session, mounted]);
 
   return (
     <div className={styles.container}>
@@ -71,7 +76,7 @@ const CountdownTimer: React.FC = () => {
           {timeLeft.seconds}s
         </span>
       ) : (
-        <span>Đã có thể check-in concert!</span>
+        <>{mounted ? <span>Đã có thể check-in concert!</span> : ""}</>
       )}
     </div>
   );
