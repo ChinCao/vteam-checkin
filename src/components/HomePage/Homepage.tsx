@@ -47,7 +47,7 @@ export default async function HomePage() {
     if (await AutoLogOut(session, sheetData, csrf)) {
       redirect("/concert-relogin");
     }
-    if (!sheetData[TICKET_TYPE_INDEX].includes("concert")) {
+    if (!sheetData[TICKET_TYPE_INDEX].includes(TICKET_WITH_CONCERT)) {
       redirect("/no-concert-ticket");
     }
     if (sheetData[CONCERT_CHECKIN_INDEX] == "TRUE") {

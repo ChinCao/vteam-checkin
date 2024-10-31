@@ -22,17 +22,17 @@ export const NAME_INDEX = 2;
 export const CLASS_INDEX = 3;
 export const STUDENTID_INDEX = 4;
 export const EMAIL_INDEX = 5;
-export const LOGIN_INDEX = 6;
-export const CHECKIN_INDEX = 7;
-export const CONCERT_LOGIN_INDEX = 8;
-export const CONCERT_CHECKIN_INDEX = 9;
+export const LOGIN_INDEX = 8;
+export const CHECKIN_INDEX = 6;
+export const CONCERT_LOGIN_INDEX = 9;
+export const CONCERT_CHECKIN_INDEX = 7;
 export const CSRF_SILENCIO = 10;
 export const CSRF_CONCERT = 11;
 
-export const LOGIN_COLUMN = "G";
-export const CHECK_IN_COLUMN = "H";
-export const CONCERT_LOGIN_COLUMN = "I";
-export const CONCERT_CHECKIN_COLUMN = "J";
+export const LOGIN_COLUMN = "I";
+export const CHECK_IN_COLUMN = "G";
+export const CONCERT_LOGIN_COLUMN = "J";
+export const CONCERT_CHECKIN_COLUMN = "H";
 export const CSRF_SILENCIO_COLUMN = "K";
 export const CSRF_CONCERT_COLUMN = "L";
 
