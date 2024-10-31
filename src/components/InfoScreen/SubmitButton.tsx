@@ -2,7 +2,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Checkin } from "./Checkin";
-import { ISCONCERT, Theme } from "@/constants/constants";
+import { ISCONCERT, STUDENTID_INDEX, Theme } from "@/constants/constants";
 import styles from "./css/SubmitButton.module.css";
 import { useState } from "react";
 import LoadingSpinner from "../Loader/LoadingSpinner";
@@ -24,20 +24,29 @@ const SubmitButton = ({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setIsLoading(true);
-    const correct = await Checkin(data, password);
-    if (correct) {
+
+    if (password == data[STUDENTID_INDEX].slice(-3) && !ISCONCERT()) {
+      setIsLoading(true);
       setDisappear(true);
       setIsCorrect(true);
-      try {
-        if (ISCONCERT()) {
-          router.push("/checkin-concert-successful");
-        } else {
-          router.push("/checkin-successful");
+      const correct = await Checkin(data);
+      if (correct) {
+        try {
+          if (ISCONCERT()) {
+            router.push("/checkin-concert-successful");
+          } else {
+            router.push("/checkin-successful");
+          }
+        } catch (error) {
+          setIsLoading(false);
+          return NextResponse.json(
+            { message: "Error", error },
+            { status: 500 }
+          );
         }
-      } catch (error) {
+      } else {
         setIsLoading(false);
-        return NextResponse.json({ message: "Error", error }, { status: 500 });
+        setIsCorrect(false);
       }
     } else {
       setIsLoading(false);
@@ -48,30 +57,29 @@ const SubmitButton = ({
   return (
     <>
       {!disappear ? (
-        <button
-          type="submit"
-          disabled={isLoading}
-          onClick={handleSubmit}
-          style={{ background: theme.color }}
-          className={!isCorrect ? styles.wrong : ""}
-          onMouseEnter={(e: any) => {
-            e.target.style.borderColor = theme.color;
-            e.target.style.color = theme.color;
-            e.target.style.background = "transparent";
-          }}
-          onMouseLeave={(e: any) => {
-            e.target.style.borderColor = "transparent";
-            e.target.style.color = "white";
-            e.target.style.background = theme.color;
-          }}
-        >
-          {isLoading ? (
-            <LoadingSpinner size="20px" />
-          ) : (
-            <>{isCorrect ? "Check-in" : "Sai mã"}</>
-          )}
-        </button>
+        <>
+          <button
+            type="submit"
+            disabled={isLoading}
+            onClick={handleSubmit}
+            style={{ background: theme.color }}
+            className={!isCorrect ? styles.wrong : ""}
+            onMouseEnter={(e: any) => {
+              e.target.style.borderColor = theme.color;
+              e.target.style.color = theme.color;
+              e.target.style.background = "transparent";
+            }}
+            onMouseLeave={(e: any) => {
+              e.target.style.borderColor = "transparent";
+              e.target.style.color = "white";
+              e.target.style.background = theme.color;
+            }}
+          >
+            {isCorrect ? "Check-in" : "Sai mã"}
+          </button>
+        </>
       ) : null}
+      {isLoading ? <LoadingSpinner size="20px" /> : <></>}
     </>
   );
 };

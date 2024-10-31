@@ -1,17 +1,13 @@
 "use server";
-import {
-  ISCONCERT,
-  SpreadsheetData,
-  STUDENTID_INDEX,
-} from "@/constants/constants";
+import { ISCONCERT, SpreadsheetData } from "@/constants/constants";
 import { updateSheetData } from "@/lib/GoogleSpreadsheet";
 
-export async function Checkin(data: SpreadsheetData, password: string) {
+export async function Checkin(data: SpreadsheetData) {
   {
-    if (password == data[STUDENTID_INDEX].slice(-3) && !ISCONCERT()) {
+    if (!ISCONCERT()) {
       await updateSheetData(data, "check-in");
       return true;
-    } else if (password == data[STUDENTID_INDEX].slice(-3) && ISCONCERT()) {
+    } else if (ISCONCERT()) {
       await updateSheetData(data, "check-in-concert");
       return true;
     }
