@@ -1,4 +1,4 @@
-export const CONCERT_DATE = new Date("2024-10-31T11:35:00+07:00");
+export const CONCERT_DATE = new Date("2024-11-01T19:25:00+07:00");
 
 export type SpreadsheetData = [
   string, // 'Index 16 STT'
@@ -7,12 +7,12 @@ export type SpreadsheetData = [
   string, // '11B4'
   string, // 'VS054678'
   string, // 'chinh054678@stu.vinschool.edu.vn'
-  string, // 'TRUE'  Đã checked-in lần 1
+  string, // 'TRUE' Đã checked-in lần 1
   string, // 'FALSE' Đã checked-in concert
-  string, // 'FALSE'  Đã đăng nhập lần 1
+  string, // 'FALSE' Đã đăng nhập lần 1
   string, // 'FALSE' Đã đăng nhập concert
-  string, // csrf lần 1
-  string //  csrf concert
+  string, // CSRF lần 1
+  string //  CSRF concert
 ];
 
 export const ROW_SHIFT = 2;

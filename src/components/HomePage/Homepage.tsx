@@ -71,14 +71,17 @@ export default async function HomePage() {
       <>
         <InfoScreen data={sheetData} />
         <h5 className={styles.status}>
-          {sheetData[1].includes(TICKET_WITH_CONCERT) ? (
-            <>
-              <CountdownTimer />
-              Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!
-            </>
-          ) : (
-            ""
-          )}
+          <div
+            style={{
+              opacity: sheetData[1].includes(TICKET_WITH_CONCERT) ? "1" : "0",
+              marginTop: sheetData[1].includes(TICKET_WITH_CONCERT)
+                ? "0"
+                : "-100px",
+            }}
+          >
+            <CountdownTimer />
+            Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!
+          </div>
         </h5>
       </>
     ),
