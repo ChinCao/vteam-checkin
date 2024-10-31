@@ -1,26 +1,14 @@
 "use client";
 import MainLayout from "@/components/MainLayout/MainLayout";
-import { signIn, useSession } from "next-auth/react";
-import Image from "next/image";
+import { useSession } from "next-auth/react";
 import styles from "./signin.module.css";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
-import LoadingSpinner from "@/components/Loader/LoadingSpinner";
-import { NextResponse } from "next/server";
-import { RED_MAIN } from "@/constants/constants";
+import { ISCHECKIN, RED_MAIN } from "@/constants/constants";
+import SigninButton from "@/components/SigninButton/SigninButton";
 
 const LoginPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const handleGoogleSignIn = () => {
-    try {
-      setIsLoading(true);
-      signIn("google", { callbackUrl: "/" });
-    } catch (error) {
-      setIsLoading(false);
-      return NextResponse.json({ message: "Error", error }, { status: 500 });
-    }
-  };
   const { data: session, status } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [loginStatus, setLoginStatus] = useState("");
@@ -44,9 +32,6 @@ const LoginPage = () => {
       }
       setLoginStatus(existingValue!);
     }
-    return () => {
-      setIsLoading(false);
-    };
   }, [session?.user?.email, status]);
 
   return (
@@ -55,25 +40,14 @@ const LoginPage = () => {
       text="cổng đăng nhập"
       banner={false}
     >
-      <button
-        className={styles.google}
-        onClick={handleGoogleSignIn}
-        style={{ padding: "10px 20px", fontSize: "16px" }}
-      >
-        {!isLoading ? (
-          <Image
-            className={styles.logo}
-            src="/google.webp"
-            width={50}
-            height={50}
-            alt="logo"
-          />
-        ) : (
-          <LoadingSpinner margin_right="15px" size="35px" />
-        )}
-        <h1>Đăng nhập bằng Google</h1>
-      </button>
-      <CountdownTimer />
+      {ISCHECKIN() ? (
+        <SigninButton status="Đăng nhập bằng Google" />
+      ) : (
+        <SigninButton status="Chưa đến giờ check-in" />
+      )}
+
+      <CountdownTimer countDownType={"check-in"} />
+      <CountdownTimer countDownType={"concert"} />
       <h4 className={styles.status}>{loginStatus}</h4>
     </MainLayout>
   );

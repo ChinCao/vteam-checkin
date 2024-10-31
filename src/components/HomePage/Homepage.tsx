@@ -9,6 +9,7 @@ import {
   CHECKIN_INDEX,
   CONCERT_CHECKIN_INDEX,
   CONCERT_LOGIN_INDEX,
+  CONCERT_TIME,
   CSRF_CONCERT,
   CSRF_SILENCIO,
   ISCONCERT,
@@ -79,8 +80,8 @@ export default async function HomePage() {
                 : "-100px",
             }}
           >
-            <CountdownTimer />
-            Bạn hãy quay lại website vào lúc 19h:30 để check-in concert!
+            <CountdownTimer countDownType={"concert"} />
+            Bạn hãy quay lại website vào lúc {CONCERT_TIME} để check-in concert!
           </div>
         </h5>
       </>

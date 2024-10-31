@@ -1,5 +1,5 @@
 "use client";
-import { CONCERT_DATE, ISCONCERT } from "@/constants/constants";
+import { CHECKIN_DATE, CONCERT_DATE, ISCONCERT } from "@/constants/constants";
 import styles from "./timer.module.css";
 import React, { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
@@ -7,8 +7,13 @@ import { AutoLogOut } from "../../lib/AutoLogOut";
 import { useRouter } from "next/navigation";
 import { GetCSRF } from "@/lib/Tokens";
 
-const CountdownTimer: React.FC = () => {
-  const targetDate: Date = CONCERT_DATE;
+const CountdownTimer = ({ countDownType }: { countDownType: string }) => {
+  let targetDate: Date;
+  if (countDownType == "concert") {
+    targetDate = CONCERT_DATE;
+  } else {
+    targetDate = CHECKIN_DATE;
+  }
   const router = useRouter();
 
   interface TimeLeft {
@@ -50,33 +55,57 @@ const CountdownTimer: React.FC = () => {
         router.push("/concert-relogin");
       }
     };
+    if (countDownType == "concert") {
+      if (!ISCONCERT() && mounted) {
+        const timer = setInterval(async () => {
+          const newTimeLeft = calculateTimeLeft();
+          setTimeLeft(newTimeLeft);
+          if (newTimeLeft === null) {
+            clearInterval(timer);
+            await handleLogout();
+          }
+        }, 1000);
 
-    if (!ISCONCERT() && mounted) {
+        return () => clearInterval(timer);
+      } else {
+        setTimeLeft(null);
+      }
+    } else {
       const timer = setInterval(async () => {
         const newTimeLeft = calculateTimeLeft();
         setTimeLeft(newTimeLeft);
         if (newTimeLeft === null) {
           clearInterval(timer);
-          await handleLogout();
+          router.refresh();
         }
       }, 1000);
-
-      return () => clearInterval(timer); // Cleanup interval on unmount
-    } else {
-      setTimeLeft(null);
     }
-  }, [calculateTimeLeft, router, session, mounted]);
+  }, [calculateTimeLeft, router, session, mounted, countDownType]);
 
   return (
     <div className={styles.container}>
-      {timeLeft && <h4>Concert countdown:</h4>}
+      {timeLeft && (
+        <h4>
+          {countDownType == "concert" ? "Concert" : "Check-in"} countdown:
+        </h4>
+      )}
       {timeLeft ? (
         <span>
           {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m{" "}
           {timeLeft.seconds}s
         </span>
       ) : (
-        <>{mounted ? <span>Đã có thể check-in concert!</span> : ""}</>
+        <>
+          {mounted ? (
+            <span>
+              {countDownType == "concert"
+                ? " Đã có thể check-in concert!"
+                : "Đã có thể đăng nhập"}
+            </span>
+          ) : (
+            ""
+          )}
+        </>
       )}
     </div>
   );

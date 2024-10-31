@@ -1,4 +1,8 @@
-export const CONCERT_DATE = new Date("2024-11-01T19:25:00+07:00");
+export const CONCERT_TIME = "19:25";
+export const LOGIN_TIME = "16:15";
+
+export const CONCERT_DATE = new Date(`2024-11-01T${CONCERT_TIME}:20+07:00`);
+export const CHECKIN_DATE = new Date(`2024-11-01T${LOGIN_TIME}:50+07:00`);
 
 export type SpreadsheetData = [
   string, // 'Index 16 STT'
@@ -39,6 +43,11 @@ export const CSRF_CONCERT_COLUMN = "L";
 export const ISCONCERT = () => {
   const currentTime = new Date();
   return currentTime > CONCERT_DATE;
+};
+
+export const ISCHECKIN = () => {
+  const currentTime = new Date();
+  return currentTime > CHECKIN_DATE;
 };
 
 export const RED_MAIN = "#980000";
