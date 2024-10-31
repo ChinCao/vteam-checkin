@@ -1,5 +1,5 @@
 export const CONCERT_TIME = "19:25";
-export const LOGIN_TIME = "16:15";
+export const LOGIN_TIME = "16:30";
 
 export const CONCERT_DATE = new Date(`2024-11-01T${CONCERT_TIME}:20+07:00`);
 export const CHECKIN_DATE = new Date(`2024-11-01T${LOGIN_TIME}:50+07:00`);
