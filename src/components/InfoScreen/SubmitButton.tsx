@@ -25,7 +25,7 @@ const SubmitButton = ({
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (password == data[STUDENTID_INDEX].slice(-3) && !ISCONCERT()) {
+    if (password == data[STUDENTID_INDEX].slice(-3)) {
       setIsLoading(true);
       setDisappear(true);
       setIsCorrect(true);
@@ -47,6 +47,7 @@ const SubmitButton = ({
       } else {
         setIsLoading(false);
         setIsCorrect(false);
+        setDisappear(false);
       }
     } else {
       setIsLoading(false);
